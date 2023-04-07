@@ -17,11 +17,12 @@ from passlib.hash import bcrypt
 from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
+from ..sleepTrack import tables
+
 from .. import (
     models,
-    tables,
 )
-from ..database import get_session
+from ..sleepTrack.database import get_session
 from ..settings import settings
 
 
