@@ -1,0 +1,11 @@
+version: "3.4"
+# services:
+#   service_db:
+#     container_name: python-garden_db
+#     image: postgres:10
+#     ports:
+#       - "5432:5432"
+#     environment:
+#       POSTGRES_DB: postgres
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: postgres
