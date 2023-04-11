@@ -11,7 +11,6 @@ from ..services.auth import (
     get_current_user,
 )
 
-
 router = APIRouter(
     prefix='/auth',
     tags=['auth'],
@@ -34,6 +33,7 @@ def sign_up(
     '/sign-in/',
     response_model=models.Token,
 )
+
 def sign_in(
     auth_data: OAuth2PasswordRequestForm = Depends(),
     auth_service: AuthService = Depends(),
