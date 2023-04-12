@@ -3,7 +3,7 @@
     <div class="page register-page">
       <div class="big-logo"></div>
       <div class="title">The place for your healthy sleep</div>
-      <app-form-register></app-form-register>
+      <app-form-register (onSignup)="onSignup.emit($event)"></app-form-register>
     </div>
   </div>
 </div>

@@ -14,6 +14,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { IUserRegister } from 'src/app/share/register';
 
 @Component({
   selector: 'app-form-register',
@@ -36,6 +37,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 })
 export class FormRegisterComponent {
   @Output() onSignup = new EventEmitter<any>();
+
   constructor(private fb: FormBuilder) {}
 
   public hide = true;
@@ -55,7 +57,6 @@ export class FormRegisterComponent {
   });
 
   public submitForm(): void {
-    console.log(this.registrationForm.value);
     this.onSignup.emit(this.registrationForm.value);
   }
 }
