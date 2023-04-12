@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-form-register',
@@ -26,6 +28,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatRadioModule,
     MatCheckboxModule,
     FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   templateUrl: './form-register.component.html',
   styleUrls: ['./form-register.component.scss'],
@@ -38,9 +42,9 @@ export class FormRegisterComponent {
 
   registrationForm = this.fb.group({
     name: ['', [Validators.required]],
+    birthday: [''],
     gender: ['femail'],
-    birthday: ['', [Validators.required, Validators.email]],
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required]],
     password: [
       '',
       [Validators.required, Validators.minLength(8), Validators.maxLength(15)],
