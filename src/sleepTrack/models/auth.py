@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from enum import Enum
 
 
 class BaseUser(BaseModel):
@@ -15,6 +16,10 @@ class User(BaseUser):
 
     class Config:
         orm_mode = True
+
+
+class TableUser(User, UserCreate):
+    pass
 
 
 class Token(BaseModel):
