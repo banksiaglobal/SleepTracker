@@ -14,7 +14,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { IUserRegister } from 'src/app/share/register';
 
 @Component({
   selector: 'app-form-register',
