@@ -8,13 +8,18 @@
     <mat-label>Username</mat-label>
     <input matInput autocomplete="off" formControlName="name" #name />
     <mat-error *ngIf="registrationForm.controls['name'].invalid">
-      Make sure it's no more 15 characters OR at least 8 characters
+      2 - 15 characters
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width" appearance="outline">
     <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker" />
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="birthday"
+      #birthday
+    />
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker">
       <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
