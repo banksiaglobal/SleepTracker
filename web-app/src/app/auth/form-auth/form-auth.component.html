@@ -1,9 +1,9 @@
 <form class="user-form" [formGroup]="authForm" (ngSubmit)="submitForm()">
   <mat-form-field appearance="outline">
-    <mat-label>Email</mat-label>
-    <input matInput autocomplete="off" formControlName="email" #email />
-    <mat-error *ngIf="authForm.controls['email'].invalid">
-      Enter a valid email
+    <mat-label>Name</mat-label>
+    <input matInput autocomplete="off" formControlName="name" #name />
+    <mat-error *ngIf="authForm.controls['name'].invalid">
+      Enter your name
     </mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">

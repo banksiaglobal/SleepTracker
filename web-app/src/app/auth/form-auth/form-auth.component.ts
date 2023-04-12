@@ -43,7 +43,7 @@ export class FormAuthComponent {
   public hide = true;
 
   authForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    name: ['', [Validators.required]],
     password: [
       '',
       [Validators.required, Validators.minLength(8), Validators.maxLength(15)],
