@@ -15,6 +15,14 @@ export const APP_ROUTES: Routes = [
       ),
     title: 'Register',
   },
+
+  {
+    path: 'signin',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./auth/auth/auth.component').then((m) => m.AuthComponent),
+    title: 'Auth',
+  },
   {
     path: 'data',
     pathMatch: 'full',

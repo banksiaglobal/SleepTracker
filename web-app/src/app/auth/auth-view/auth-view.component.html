@@ -1,0 +1,15 @@
+<div class="page-dark">
+  <div class="container">
+    <div class="page register-page">
+      <div class="big-logo"></div>
+      <div class="title">The place for your healthy sleep</div>
+      <div class="instruction">
+        <span class="instruction">{{ instruction }}</span>
+        <span class="btn-link" (click)="onGoToOppositeForm.emit()">{{
+          titleLink
+        }}</span>
+      </div>
+      <app-form-auth (onSignin)="onSignin.emit($event)"></app-form-auth>
+    </div>
+  </div>
+</div>

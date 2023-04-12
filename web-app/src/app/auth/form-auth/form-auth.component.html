@@ -1,0 +1,33 @@
+<form class="user-form" [formGroup]="authForm" (ngSubmit)="submitForm()">
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput autocomplete="off" formControlName="email" #email />
+    <mat-error *ngIf="authForm.controls['email'].invalid">
+      Enter a valid email
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      [type]="hide ? 'password' : 'text'"
+      autocomplete="off"
+      formControlName="password"
+      #password
+    />
+    <mat-icon matSuffix (click)="hide = !hide">{{
+      hide ? "visibility" : "visibility_off"
+    }}</mat-icon>
+  </mat-form-field>
+
+  <button
+    class="btn-gold"
+    mat-raised-button
+    cdkFocusInitial
+    type="submit"
+    [disabled]="authForm.invalid"
+    color="primary"
+  >
+    Sign up
+  </button>
+</form>

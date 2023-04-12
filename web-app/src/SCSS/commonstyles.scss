@@ -19,6 +19,43 @@
   padding: 10px 0;
 }
 
+.user-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  background-color: var(--white-color);
+}
+
+/*auth && register*/
+.big-logo {
+  background: url("../assets/sheep-1.png") center no-repeat;
+  height: 266px;
+  width: 100%;
+}
+
+.register-page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-bottom: 10px;
+  color: var(--accent-color);
+  font-size: 20px;
+}
+
+.instruction {
+  margin-right: 5px;
+  color: var(--white-color);
+}
+
+.btn-link {
+  color: var(--accent-color);
+}
+
 .page-content {
   height: 100%;
 }
