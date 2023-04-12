@@ -19,7 +19,7 @@ router = APIRouter(
 
 @router.post(
     '/sign-up/',
-    response_model=models.Token,
+    # response_model=models.Token,
     status_code=status.HTTP_201_CREATED,
 )
 def sign_up(

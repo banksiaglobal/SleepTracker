@@ -14,24 +14,24 @@ cur = conn.cursor()
 cur.execute('DROP TABLE IF EXISTS Conditions')
 cur.execute('DROP TABLE IF EXISTS SysUsers')
 cur.execute('CREATE TABLE SysUsers (id serial PRIMARY KEY,'
-                                 'email varchar (150) NOT NULL UNIQUE,'
-                                 'username varchar (50) NOT NULL UNIQUE,'
-                                 'password varchar (150) NOT NULL)'
-                                 )
+            'email varchar (150) NOT NULL UNIQUE,'
+            'username varchar (50) NOT NULL UNIQUE,'
+            'password varchar (150) NOT NULL,'
+            'gender varchar (10) NOT NULL, '
+            'DOB datetime NOT NULL)')
 
 cur.execute('CREATE TABLE Conditions (id serial PRIMARY KEY,'
-                                 'activity varchar (10) NOT NULL,'
-                                 'stress int NOT NULL,'
-                                 'coffee int NOT NULL,'
-                                 'emotion int NOT NULL,'
-                                 'lights int NOT NULL,'
-                                 'comfort int NOT NULL,'
-                                 'sleep int NOT NULL,'
-                                 'user_id int NOT NULL,'
-                                 'start_time datetime NOT NULL,'
-                                 'end_time datetime NOT NULL,'
-                                 'FOREIGN KEY (user_id) REFERENCES SysUsers(id) ON DELETE CASCADE)'
-                                 )
+            'activity varchar (10) NOT NULL,'
+            'stress int NOT NULL,'
+            'coffee int NOT NULL,'
+            'emotion int NOT NULL,'
+            'lights int NOT NULL,'
+            'comfort int NOT NULL,'
+            'sleep int NOT NULL,'
+            'user_id int NOT NULL,'
+            'start_time datetime NOT NULL,'
+            'end_time datetime NOT NULL,'
+            'FOREIGN KEY (user_id) REFERENCES SysUsers(id) ON DELETE CASCADE)')
 
 conn.commit()
 
