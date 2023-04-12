@@ -28,7 +28,9 @@ cur.execute('CREATE TABLE Conditions (id serial PRIMARY KEY,'
                                  'comfort int NOT NULL,'
                                  'sleep int NOT NULL,'
                                  'user_id int NOT NULL,'
-                                 'FOREIGN KEY (user_id) REFERENCES SysUsers(id))'
+                                 'start_time datetime NOT NULL,'
+                                 'end_time datetime NOT NULL,'
+                                 'FOREIGN KEY (user_id) REFERENCES SysUsers(id) ON DELETE CASCADE)'
                                  )
 
 conn.commit()
