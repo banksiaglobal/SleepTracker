@@ -16,7 +16,6 @@ export class AuthComponent {
   public onSignin(signinForm: any): void {
     console.log(signinForm);
     if (signinForm) {
-      console.log('signupForm');
       this.goToApp();
     }
   }
