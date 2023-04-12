@@ -16,10 +16,10 @@ from jose import (
 from passlib.hash import bcrypt
 from pydantic import ValidationError
 
-
 from .. import (
     models,
 )
+
 from ..database import get_connection
 from ..settings import settings
 
@@ -28,17 +28,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/auth/sign-in/')
 
 def get_current_user(token: str = Depends(oauth2_scheme)) -> models.User:
     return AuthService.verify_token(token)
-
-
-def user_from_db_to_dict(users: list, i: int = 0) -> models.TableUser:
-    # return list_user
-    while i < len(users):
-        yield models.TableUser.parse_obj({
-            'id': users[i][0],
-            'email': users[i][1],
-            'username': users[i][2],
-            'password': users[i][3]})
-        i += 1
 
 
 class AuthService:
@@ -98,18 +87,20 @@ class AuthService:
 
     def register_new_user(
             self,
-            user_data: models.UserCreate,
+            user_data: models.UserCreate
     ) -> models.Token:
         cur = self.connection.cursor()
-        cur.execute('INSERT INTO SysUsers (email, username, password)'
-                    'VALUES (?, ?, ?)',
-                    (user_data.email, user_data.username, self.hash_password(user_data.password)))
+        cur.execute('INSERT INTO SysUsers (email, username, password, gender, DOB)'
+                    'VALUES (?, ?, ?, ?, ?)',
+                    (
+                        user_data.email, user_data.username, self.hash_password(user_data.password),
+                        user_data.gender.value, user_data.DOB)
+                    )
         self.connection.commit()
         cur.execute(f"SELECT * FROM SysUsers where email = '{user_data.email}'")
         users = cur.fetchall()
         cur.close()
-
-        user = list(user_from_db_to_dict(users))[0]
+        user = list(self._user_from_db_to_dict(users))[0]
         return self.create_token(user)
 
     def authenticate_user(
@@ -127,7 +118,7 @@ class AuthService:
             cur.execute(f"SELECT * FROM SysUsers where username = '{username}'")
             users = cur.fetchall()
             cur.close()
-            user = list(user_from_db_to_dict(users))[0]
+            user = list(self._user_from_db_to_dict(users))[0]
             if not user:
                 raise Exception()
 
@@ -137,3 +128,15 @@ class AuthService:
             raise exception
 
         return self.create_token(user)
+
+    @staticmethod
+    def _user_from_db_to_dict(users: list, i: int = 0) -> models.TableUser:
+        while i < len(users):
+            yield models.TableUser.parse_obj({
+                'id': users[i][0],
+                'email': users[i][1],
+                'username': users[i][2],
+                'password': users[i][3],
+                'gender': users[i][4],
+                'DOB': users[i][5]})
+            i += 1
