@@ -1,0 +1,28 @@
+.page-dark {
+  min-height: 86vh;
+  background-color: var(--base-dark-color);
+}
+
+.page-light {
+  min-height: 86vh;
+  background-color: var(--gray-bg);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 360;
+  padding: 0 10px;
+  height: 100%;
+}
+
+.page {
+  padding: 10px 0;
+}
+
+.page-content {
+  height: 100%;
+}
+
+.link {
+  text-decoration: none;
+}

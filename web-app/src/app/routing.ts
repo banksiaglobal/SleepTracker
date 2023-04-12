@@ -7,11 +7,6 @@ export const APP_ROUTES: Routes = [
     redirectTo: 'info',
   },
   {
-    path: 'info',
-    pathMatch: 'full',
-    title: 'Info',
-  },
-  {
     path: 'signup',
     pathMatch: 'full',
     loadComponent: () =>
@@ -19,6 +14,15 @@ export const APP_ROUTES: Routes = [
         (m) => m.RegisterComponent
       ),
     title: 'Register',
+  },
+  {
+    path: 'data',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./pages/collect-data/collect-data/collect-data.component').then(
+        (m) => m.CollectDataComponent
+      ),
+    title: 'Data',
   },
   {
     path: 'advice',
@@ -35,6 +39,6 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'info',
+    redirectTo: 'data',
   },
 ];
