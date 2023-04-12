@@ -1,5 +1,9 @@
-<div class="page-light">
+<div class="page-dark">
   <div class="container">
-    <div class="page-content"></div>
+    <div class="page register-page">
+      <app-collect-data-form
+        (addData)="addData.emit($event)"
+      ></app-collect-data-form>
+    </div>
   </div>
 </div>

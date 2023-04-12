@@ -25,12 +25,13 @@
     </mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
-
-  <mat-radio-group formControlName="gender" #gender>
-    <mat-radio-button color="primary" value="femail">Femail</mat-radio-button>
-    <mat-radio-button color="primary" value="male">Male</mat-radio-button>
-  </mat-radio-group>
-
+  <div>
+    <label>Gender:</label>
+    <mat-radio-group formControlName="gender" #gender>
+      <mat-radio-button color="primary" value="femail">Femail</mat-radio-button>
+      <mat-radio-button color="primary" value="male">Male</mat-radio-button>
+    </mat-radio-group>
+  </div>
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
     <input matInput autocomplete="off" formControlName="email" #email />

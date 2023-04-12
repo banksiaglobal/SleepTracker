@@ -9,4 +9,10 @@ import { CollectDataViewComponent } from '../collect-data-view/collect-data-view
   templateUrl: './collect-data.component.html',
   styleUrls: ['./collect-data.component.scss'],
 })
-export class CollectDataComponent {}
+export class CollectDataComponent {
+  public addData(userSettings: any): void {
+    if (userSettings) {
+      console.log(userSettings);
+    }
+  }
+}
