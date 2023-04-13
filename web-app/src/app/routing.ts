@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './share/guards/auth.guard';
+import { DataGuard } from './share/guards/data.guard';
 
 export const APP_ROUTES: Routes = [
   {
@@ -14,6 +16,7 @@ export const APP_ROUTES: Routes = [
         (m) => m.RegisterComponent
       ),
     title: 'Register',
+    canActivate: [DataGuard],
   },
 
   {
@@ -22,6 +25,7 @@ export const APP_ROUTES: Routes = [
     loadComponent: () =>
       import('./auth/auth/auth.component').then((m) => m.AuthComponent),
     title: 'Auth',
+    canActivate: [DataGuard],
   },
   {
     path: 'data',
@@ -31,22 +35,30 @@ export const APP_ROUTES: Routes = [
         (m) => m.CollectDataComponent
       ),
     title: 'Data',
+    canActivate: [AuthGuard],
   },
   {
     path: 'advice',
-    // loadComponent: () => import('./modules/start-menu/user-page/sign-up/signup/signup.component'),
+    loadComponent: () =>
+      import('./pages/advice/advice/advice.component').then(
+        (c) => c.AdviceComponent
+      ),
 
     pathMatch: 'full',
-    title: 'Registration',
+    title: 'Advice',
+    canActivate: [AuthGuard],
   },
   {
     path: 'about',
-    // loadComponent: () => import('./modules/start-menu/about-page/about-page.component'),
+    loadComponent: () =>
+      import('./pages/about/about/about.component').then(
+        (c) => c.AboutComponent
+      ),
     pathMatch: 'full',
     title: 'About',
   },
   {
-    path: '*signup*',
-    redirectTo: 'data',
+    path: '**',
+    redirectTo: 'about',
   },
 ];
