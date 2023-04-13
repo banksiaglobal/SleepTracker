@@ -1,0 +1,61 @@
+<form
+  class="user-form"
+  [formGroup]="registrationForm"
+  (ngSubmit)="submitForm()"
+>
+  <mat-form-field appearance="outline" class="user-form-space">
+    <mat-label>Username</mat-label>
+    <input matInput autocomplete="off" formControlName="username" #username />
+    <mat-error *ngIf="registrationForm.controls['username'].invalid">
+      2 - 15 characters
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="DOB" #DOB />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <div>
+    <label>Gender:</label>
+    <mat-radio-group formControlName="gender" #gender>
+      <mat-radio-button color="primary" value="female">Female</mat-radio-button>
+      <mat-radio-button color="primary" value="male">Male</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput autocomplete="off" formControlName="email" #email />
+    <mat-error *ngIf="registrationForm.controls['email'].invalid">
+      Enter a valid email
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      [type]="hide ? 'password' : 'text'"
+      autocomplete="off"
+      formControlName="password"
+      #password
+    />
+    <mat-icon matSuffix (click)="hide = !hide">{{
+      hide ? "visibility" : "visibility_off"
+    }}</mat-icon>
+  </mat-form-field>
+
+  <button
+    class="btn-gold"
+    mat-raised-button
+    cdkFocusInitial
+    type="submit"
+    [disabled]="registrationForm.invalid"
+    color="primary"
+  >
+    Sign up
+  </button>
+</form>

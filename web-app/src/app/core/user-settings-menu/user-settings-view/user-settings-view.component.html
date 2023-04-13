@@ -1,0 +1,23 @@
+<div
+  class="small-logo"
+  mat-mini-fab
+  color="primary"
+  [matMenuTriggerFor]="userMenu"
+  matTooltip="user:{{ user }}"
+  matTooltipHideDelay="1000"
+></div>
+
+<mat-menu #userMenu="matMenu" class="mat-elevation-z8">
+  <div class="user-data" matTool>
+    <span class="title-menu">Signed in as</span>
+    <span class="user">{{ user }}</span>
+  </div>
+  <a mat-menu-item (click)="goToSettingsPage()">
+    <mat-icon color="primary">manage_accounts</mat-icon>
+    <span>About</span>
+  </a>
+  <a mat-menu-item (click)="userLogout()">
+    <mat-icon color="primary">logout</mat-icon>
+    <span>Sign out</span>
+  </a>
+</mat-menu>

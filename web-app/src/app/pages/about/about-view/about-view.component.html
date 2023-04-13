@@ -1,0 +1,39 @@
+<div class="page-light">
+  <div class="main-container">
+    <div class="page">
+      <div class="content">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ab amet
+        odio. Quo deleniti culpa error, impedit nobis voluptatem. Ratione ut
+        porro ipsum eum. Dignissimos neque qui sit in dolores?
+      </div>
+      <div class="registre-box" *ngIf="isUserLogin == false">
+        <div class="registre-box-title">
+          <div class="registre-box-title white-font title-mini bolder-weight">
+            Boost your sleep.
+          </div>
+          <div
+            class="registre-box-title dark-gray-font title-mini bolder-weight"
+          >
+            Start using 'Sheep's galaxy' today.
+          </div>
+        </div>
+        <div class="registre-box-btns">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="clickGoToRegistrePage()"
+          >
+            Sign up for free
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="clickGoToLoginPage()"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

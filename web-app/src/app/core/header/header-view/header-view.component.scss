@@ -1,0 +1,33 @@
+.header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.header-box-login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.header-box-logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.main-title {
+  position: relative;
+  font-size: 35px;
+  color: var(--accent-color);
+}
+
+.main-title::before {
+  position: absolute;
+  top: -12px;
+  left: -21px;
+  content: url("../../../../assets/gold-star-icon.svg");
+}
