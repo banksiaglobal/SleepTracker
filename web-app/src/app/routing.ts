@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const APP_ROUTES: Routes = [
   {
-    path: '',
+    path: 'signup',
     pathMatch: 'full',
     redirectTo: 'info',
   },
@@ -46,7 +46,7 @@ export const APP_ROUTES: Routes = [
     title: 'About',
   },
   {
-    path: '**',
+    path: '*signup*',
     redirectTo: 'data',
   },
 ];

@@ -42,12 +42,12 @@ export class FormRegisterComponent {
   public hide = true;
 
   registrationForm = this.fb.group({
-    name: [
+    username: [
       '',
       [Validators.required, Validators.minLength(2), Validators.maxLength(15)],
     ],
-    birthday: [],
-    gender: ['femail'],
+    DOB: [],
+    gender: ['female'],
     email: ['', [Validators.required, Validators.email]],
     password: [
       '',

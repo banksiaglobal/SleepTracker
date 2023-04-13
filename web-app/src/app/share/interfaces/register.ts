@@ -1,6 +1,6 @@
 export interface IUserRegister {
-  name: string;
-  birthday: string;
+  username: string;
+  DOB: string;
   gender: string;
   email: string;
   password: string;

@@ -5,20 +5,15 @@
 >
   <mat-form-field appearance="outline" class="user-form-space">
     <mat-label>Username</mat-label>
-    <input matInput autocomplete="off" formControlName="name" #name />
-    <mat-error *ngIf="registrationForm.controls['name'].invalid">
+    <input matInput autocomplete="off" formControlName="username" #username />
+    <mat-error *ngIf="registrationForm.controls['username'].invalid">
       2 - 15 characters
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width" appearance="outline">
     <mat-label>Choose a date</mat-label>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      formControlName="birthday"
-      #birthday
-    />
+    <input matInput [matDatepicker]="picker" formControlName="DOB" #DOB />
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker">
       <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -28,7 +23,7 @@
   <div>
     <label>Gender:</label>
     <mat-radio-group formControlName="gender" #gender>
-      <mat-radio-button color="primary" value="femail">Femail</mat-radio-button>
+      <mat-radio-button color="primary" value="female">Female</mat-radio-button>
       <mat-radio-button color="primary" value="male">Male</mat-radio-button>
     </mat-radio-group>
   </div>
