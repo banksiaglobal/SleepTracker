@@ -1,7 +1,10 @@
-FROM python:3.9-slim as base
-WORKDIR /code
-COPY ./ /code
-RUN pip install -r /code/requirements.txt --no-cache-dir
-EXPOSE 8000
-CMD ["cd", "src"]
-CMD [ "uvicorn", "sleepTrack.app:app", "--reload"]
+FROM python:3.9-slim-bullseye
+RUN python3 -m venv /opt/venv
+
+# install dependencies:
+COPY requirements.txt .
+RUN . /opt/venv/bin/activate && pip install -r requirements.txt
+
+# run the application:
+COPY ./ /opt
+CMD . /opt/venv/bin/activate && cd opt/src && uvicorn sleepTrack.app:app --reload --host 0.0.0.0
