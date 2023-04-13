@@ -1,5 +1,5 @@
 .page-dark {
-  min-height: 86vh;
+  min-height: 85vh;
   background-color: var(--base-dark-color);
 }
 
@@ -8,9 +8,9 @@
   background-color: var(--gray-color);
 }
 
-.container {
+.main-container {
   margin: 0 auto;
-  max-width: 360;
+  max-width: 390px;
   padding: 0 10px;
   height: 100%;
 }
@@ -32,6 +32,12 @@
   background: url("../assets/sheep-1.png") center no-repeat;
   height: 266px;
   width: 100%;
+}
+
+.small-logo {
+  background: url("../assets/sheep-icon.svg") center no-repeat;
+  height: 60px;
+  width: 71px;
 }
 
 .register-page {

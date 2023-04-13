@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./about-view.component.scss'],
 })
 export class AboutViewComponent {
+  @Input() isUserLogout: boolean | null;
+
   @Input() isUserLogin: boolean | null;
 
   @Output() goToLoginPage = new EventEmitter<any>();

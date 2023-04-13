@@ -1,0 +1,29 @@
+.user-data__btn-menu {
+  display: flex;
+  align-items: center;
+}
+
+.mat-mdc-menu-panel,
+.mat-mdc-menu-content,
+.mat-mdc-menu-open {
+  padding: 0 10px 0 10px;
+}
+
+.user-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px 5px 10px;
+}
+
+.title-menu {
+  color: var(--accent-color);
+}
+
+.user-data::after {
+  content: "";
+  width: 100%;
+  margin-top: 5px;
+  border-bottom: 1px solid #d1d7dc;
+}

@@ -29,7 +29,7 @@ export class RegisterComponent {
       .pipe(
         tap(() => this.goToApp()),
         tap(() => {
-          const message = 'Please, enter your email and password again';
+          const message = 'Welcome to app!';
           this.message.shomMessage(message);
         }),
 

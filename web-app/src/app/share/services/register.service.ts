@@ -11,7 +11,6 @@ import { userGet as userGetMock } from '../../mock';
 @Injectable({ providedIn: 'root' })
 export class RegistrationService {
   constructor(
-    private httpClient: HttpClient,
     private storage: LocalStorageService,
     private auth: AuthService
   ) {}

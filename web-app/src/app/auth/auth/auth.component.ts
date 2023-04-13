@@ -27,12 +27,12 @@ export class AuthComponent {
       .pipe(
         tap(() => this.goToApp()),
         tap(() => {
-          const message = 'Please, enter data again';
+          const message = 'Welcome to app!';
           this.message.shomMessage(message);
         }),
 
         catchError((error: any) => {
-          const message = 'The registration is cancelled';
+          const message = 'The auth is cancelled';
           // const errorMessage = error.error.errors[0].params[0];
           this.message.shomMessage(message);
           this.router.navigate(['/signin']);

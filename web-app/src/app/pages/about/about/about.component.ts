@@ -14,12 +14,19 @@ import { LocalStorageService } from 'src/app/share/services/localStorage.service
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
-  constructor(public storage: LocalStorageService, private router: Router) {}
+  public isUserLogin$: Observable<boolean>;
+
+  public isUserLogout$: Observable<boolean>;
+  constructor(public auth: AuthService, private router: Router) {}
   ngOnInit(): void {
-    this.isUserLogin$ = of(!!this.storage.getUser());
+    this.ckeckIsLogin();
   }
 
-  public isUserLogin$: Observable<boolean> = of(false);
+  private ckeckIsLogin() {
+    this.isUserLogin$ = this.auth.isLoggedIn$;
+
+    this.isUserLogout$ = this.auth.isLoggedOut$;
+  }
 
   public goToLoginPage(): void {
     this.router.navigate(['/signin']);
