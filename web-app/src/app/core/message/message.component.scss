@@ -1,0 +1,38 @@
+.messages-container {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.messages-box {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  height: 100%;
+  width: 200px;
+  background-color: rgba(255, 253, 253, 0.89);
+  color: #042c29;
+  border: 2px solid #d0d7de;
+}
+
+.message {
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  cursor: pointer;
+}
+
+.warn {
+  background-color: rgb(231 219 219 / 89%);
+  color: #d72638;
+  border: 5px solid #d72638;
+}
