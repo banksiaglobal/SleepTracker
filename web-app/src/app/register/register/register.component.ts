@@ -22,7 +22,6 @@ export class RegisterComponent {
   ) {}
 
   public onSignup(signupForm: IUserRegister): void {
-    console.log(new Date(signupForm.DOB));
     signupForm.DOB = this.convertDate(new Date(signupForm.DOB));
 
     this.registre
@@ -51,6 +50,10 @@ export class RegisterComponent {
 
   public onGoToOppositeForm() {
     this.router.navigate(['/signin']);
+  }
+
+  public onGoToAboutPage() {
+    this.router.navigate(['/about']);
   }
 
   private convertDate(date: Date) {

@@ -1,8 +1,8 @@
 <form class="user-form" [formGroup]="authForm" (ngSubmit)="submitForm()">
   <mat-form-field appearance="outline">
     <mat-label>Name</mat-label>
-    <input matInput autocomplete="off" formControlName="name" #name />
-    <mat-error *ngIf="authForm.controls['name'].invalid">
+    <input matInput autocomplete="off" formControlName="username" #username />
+    <mat-error *ngIf="authForm.controls['username'].invalid">
       Enter your name
     </mat-error>
   </mat-form-field>
@@ -28,6 +28,6 @@
     [disabled]="authForm.invalid"
     color="primary"
   >
-    Sign up
+    Sign in
   </button>
 </form>

@@ -6,11 +6,11 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { MessagesService } from 'src/app/share/services/message.service';
 
 @Component({
-  selector: 'app-messages',
-  standalone: true,
+  selector: 'app-message',
   imports: [CommonModule, MatIconModule],
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss'],
+  templateUrl: './message.component.html',
+  styleUrls: ['./message.component.scss'],
+  standalone: true,
   animations: [
     trigger('openClose', [
       transition('void => *', [style({ opacity: 0 }), animate(200)]),
@@ -18,7 +18,7 @@ import { MessagesService } from 'src/app/share/services/message.service';
     ]),
   ],
 })
-export class MessagesComponent implements OnInit {
+export class MessageComponent implements OnInit {
   public messages$!: Observable<string[]>;
 
   public showMessages = false;

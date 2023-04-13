@@ -12,6 +12,8 @@ import { FormAuthComponent } from '../form-auth/form-auth.component';
 export class AuthViewComponent {
   @Output() onSignin = new EventEmitter<any>();
 
+  @Output() onGoToAboutPage = new EventEmitter<Event>();
+
   @Output() onGoToOppositeForm = new EventEmitter<Event>();
 
   public titleLink = 'Sign up';

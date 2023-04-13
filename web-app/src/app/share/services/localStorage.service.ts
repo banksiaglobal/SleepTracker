@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { IToken } from '../interfaces/token';
 
 enum DATA {
   ACCESS_TOKEN = 'acess_token',
@@ -14,17 +13,9 @@ export class LocalStorageService {
     localStorage.clear();
   }
 
-  public saveUser(userResponse: IToken): void {
+  public saveUser(user: string): void {
     localStorage.removeItem(DATA.CURRENT_USER);
-    localStorage.removeItem(DATA.ACCESS_TOKEN);
-    localStorage.setItem(
-      DATA.CURRENT_USER,
-      JSON.stringify(userResponse.access_token)
-    );
-    localStorage.setItem(
-      DATA.CURRENT_USER,
-      JSON.stringify(userResponse.username)
-    );
+    localStorage.setItem(DATA.CURRENT_USER, JSON.stringify(user));
   }
 
   public saveTokens(accessToken: string): void {

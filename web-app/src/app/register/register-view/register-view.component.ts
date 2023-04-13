@@ -15,6 +15,8 @@ export class RegisterViewComponent {
 
   @Output() onGoToOppositeForm = new EventEmitter<Event>();
 
+  @Output() onGoToAboutPage = new EventEmitter<Event>();
+
   public titleLink = 'Sign in';
 
   public instruction = 'Already have an account?';
