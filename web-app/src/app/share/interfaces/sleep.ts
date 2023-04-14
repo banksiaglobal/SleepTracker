@@ -1,11 +1,12 @@
 export interface ISleepSettings {
   activity: string;
-  bedtime: string;
+  start_time: string;
   coffee: number;
   comfort: number;
   emotion: number;
-  light: number;
-  sleep: number;
+  lights: number;
   stress: number;
-  wakeup: string;
+  end_time: string;
+  quality: number;
+  id?: string;
 }
