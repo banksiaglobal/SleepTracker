@@ -8,7 +8,7 @@ class ActivityKind(str, Enum):
     MEDIUM = 'medium'
     HARD = 'hard'
 
-class BaseCondition(BaseModel):
+class BaseSleep(BaseModel):
     activity: ActivityKind
     coffee: int = Field(None, ge=1, le=3)
     stress: int = Field(None, ge=1, le=3)
@@ -17,18 +17,18 @@ class BaseCondition(BaseModel):
     end_time: str = Query(regex='^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01]) (\d{2}):(\d{2}):(\d{2})$')
     comfort: int = Field(None, ge=0, le=1)
     lights: int = Field(None, ge=0, le=1)
-    sleep: int = Field(None, ge=1, le=3)
+    quality: int = Field(None, ge=1, le=3)
 
 
-class ConditionCreate(BaseCondition):
+class SleepCreate(BaseSleep):
     pass
 
 
-class ConditionUpdate(BaseCondition):
+class SleepUpdate(BaseSleep):
     pass
 
 
-class Condition(BaseCondition):
+class Sleep(BaseSleep):
     id: int
 
     class Config:
