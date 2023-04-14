@@ -8,6 +8,7 @@ import { IUser } from '../interfaces/user';
 import { token as mockToken, userGet } from '../../mock';
 import { userGet as userGetMock } from '../../mock';
 import { Router } from '@angular/router';
+import { environment } from 'src/environment/env';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -47,22 +48,26 @@ export class AuthService {
   // }
 
   signIn(user: IUserAuth): Observable<IToken> {
-    return this.httpClient.post<IToken>('/auth/sign-in', user).pipe(
-      tap((response: IToken) => {
-        this.storage.saveTokens(response.access_token);
-      }),
-      tap(() => this.getCurrentUser()),
-      shareReplay()
-    );
+    return this.httpClient
+      .post<IToken>(environment.apiUrl + 'auth/sign-in', user)
+      .pipe(
+        tap((response: IToken) => {
+          this.storage.saveTokens(response.access_token);
+        }),
+        tap(() => this.getCurrentUser()),
+        shareReplay()
+      );
   }
 
   getCurrentUser(): Observable<IUser> {
-    return this.httpClient.post<IUser>('/auth/user', null).pipe(
-      tap((response: IUser) => {
-        this.storage.saveUser(response.username);
-      }),
-      shareReplay()
-    );
+    return this.httpClient
+      .post<IUser>(environment.apiUrl + 'api/auth/user', null)
+      .pipe(
+        tap((response: IUser) => {
+          this.storage.saveUser(response.username);
+        }),
+        shareReplay()
+      );
   }
 
   public logout(): void {
