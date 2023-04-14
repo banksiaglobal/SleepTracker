@@ -51,7 +51,9 @@ export const APP_ROUTES: Routes = [
   {
     path: 'sleeps',
     loadComponent: () =>
-      import('./pages/sleeps/sleeps.component').then((c) => c.SleepsComponent),
+      import('./pages/sleeps-page/sleeps/sleeps.component').then(
+        (c) => c.SleepsComponent
+      ),
     pathMatch: 'full',
     title: 'Sleeps',
   },
