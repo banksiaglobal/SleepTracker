@@ -12,6 +12,7 @@ cur = conn.cursor()
 
 # Execute a command: this creates a new table
 cur.execute('DROP TABLE IF EXISTS Conditions')
+cur.execute('DROP TABLE IF EXISTS Sleeps')
 cur.execute('DROP TABLE IF EXISTS SysUsers')
 cur.execute('CREATE TABLE SysUsers (id serial PRIMARY KEY,'
             'email varchar (150) NOT NULL UNIQUE,'
@@ -20,14 +21,14 @@ cur.execute('CREATE TABLE SysUsers (id serial PRIMARY KEY,'
             'gender varchar (10) NOT NULL, '
             'DOB datetime NOT NULL)')
 
-cur.execute('CREATE TABLE Conditions (id serial PRIMARY KEY,'
+cur.execute('CREATE TABLE Sleeps (id serial PRIMARY KEY,'
             'activity varchar (10) ,'
             'stress int NOT NULL,'
             'coffee int NOT NULL,'
             'emotion int NOT NULL,'
             'lights int NOT NULL,'
             'comfort int NOT NULL,'
-            'sleep int NOT NULL,'
+            'quality int NOT NULL,'
             'user_id int NOT NULL,'
             'start_time datetime NOT NULL,'
             'end_time datetime NOT NULL,'

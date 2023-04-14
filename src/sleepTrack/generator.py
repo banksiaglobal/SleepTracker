@@ -4,7 +4,7 @@ from random import choice
 import settings
 
 from models.auth import BaseUser, Gender, TableUser
-from models.condition import BaseCondition, ActivityKind
+from models.sleep import BaseSleep, ActivityKind
 from random import randint
 import random
 from datetime import timedelta
@@ -15,6 +15,62 @@ set = settings.settings
 
 fake = Faker()
 
+from typing import Union
+
+def determine_sleep_quality(sleep: BaseSleep) -> int:
+    # Calculate the quality score based on the given factors
+    quality = 0
+    if sleep.activity == ActivityKind.LIGHT:
+        quality += 2
+    elif sleep.activity == ActivityKind.MEDIUM:
+        quality += 3
+    elif sleep.activity == ActivityKind.HARD:
+        quality += 4
+
+    if sleep.coffee == 2:
+        quality -= 1
+    elif sleep.coffee == 3:
+        quality -= 2
+    elif sleep.coffee == 1:
+        quality += 1
+
+    if sleep.stress == 1:
+        quality += 2
+    elif sleep.stress == 3:
+        quality -= 1
+    elif sleep.stress == 2:
+        quality += 1
+
+    quality += sleep.emotion
+
+    if sleep.comfort == 0:
+        quality -= 1
+    elif sleep.comfort == 1:
+        quality += 1
+
+    if sleep.lights == 1:
+        quality -= 1
+    if sleep.lights == 0:
+        quality += 1
+
+    # Adjust the quality score based on the start and end times of sleep
+    start_hour = int(sleep.start_time.split()[1].split(':')[0])
+    end_hour = int(sleep.end_time.split()[1].split(':')[0])
+    if end_hour - start_hour < 3:
+        quality -= 2
+    elif end_hour - start_hour < 5:
+        quality -= 1
+    else:  quality += 1
+
+    # Return the final quality score or a message if it's out of range
+
+    if quality < 2:
+        return 1
+    elif quality < 4:
+        return 2
+    elif quality < 9:
+        return 3
+    return 3
 
 def generate_user():
     gender = choice(list(Gender))
@@ -35,7 +91,7 @@ def generate_data():
     data['end_time'] = (datetime.now() + timedelta(hours=randint(1, 6))).strftime("%Y-%m-%d %H:%M:%S")
     data['comfort'] = randint(0, 1)
     data['lights'] = randint(0, 1)
-    data['sleep'] = randint(1, 3)
+    data['quality'] = randint(1, 3)
 
     return data
 
@@ -71,8 +127,8 @@ def gen():
 
         user = list(_user_from_db_to_dict(users))[0]
 
-        for j in range(50):
-            condition_data = BaseCondition(
+        for j in range(100):
+            sleep_data = BaseSleep(
                 activity=random.choice(list(ActivityKind)),
                 coffee=random.randint(1, 3),
                 stress=random.randint(1, 3),
@@ -84,17 +140,18 @@ def gen():
                                                      seconds=random.randint(0, 59))).strftime('%Y-%m-%d %H:%M:%S'),
                 lights=random.randint(0, 1),
                 comfort=random.randint(0, 1),
-                sleep=random.randint(1, 3),
+                quality=random.randint(1, 3),
             )
+            sleep_data.quality = determine_sleep_quality(sleep_data)
             print(
-                f" activiti '{condition_data.activity.value}', stress '{condition_data.stress}', coffee '{condition_data.coffee}',"
-                f" emotion '{condition_data.emotion}', lights '{condition_data.lights}', comfort '{condition_data.comfort}', "
-                f" sleep '{condition_data.sleep}', id '{user.id}', '{condition_data.start_time}', '{condition_data.end_time}'")
+                f" activiti '{sleep_data.activity.value}', stress '{sleep_data.stress}', coffee '{sleep_data.coffee}',"
+                f" emotion '{sleep_data.emotion}', lights '{sleep_data.lights}', comfort '{sleep_data.comfort}', "
+                f" sleep '{sleep_data.quality}', id '{user.id}', '{sleep_data.start_time}', '{sleep_data.end_time}'")
             cur.execute(
-                f"INSERT INTO Conditions (activity, stress, coffee, emotion, lights, comfort, sleep, user_id, start_time, end_time)"
-                f"VALUES ('{condition_data.activity.value}', '{condition_data.stress}', '{condition_data.coffee}',"
-                f" '{condition_data.emotion}', '{condition_data.lights}', '{condition_data.comfort}', "
-                f"'{condition_data.sleep}', '{user.id}', '{condition_data.start_time}', '{condition_data.end_time}')")
+                f"INSERT INTO Sleeps (activity, stress, coffee, emotion, lights, comfort, quality, user_id, start_time, end_time)"
+                f"VALUES ('{sleep_data.activity.value}', '{sleep_data.stress}', '{sleep_data.coffee}',"
+                f" '{sleep_data.emotion}', '{sleep_data.lights}', '{sleep_data.comfort}', "
+                f"'{sleep_data.quality}', '{user.id}', '{sleep_data.start_time}', '{sleep_data.end_time}')")
             conn.commit()
 
     cur.close()

@@ -2,10 +2,11 @@ from .auth import (
     Token,
     User,
     UserCreate,
-    TableUser
+    TableUser,
+    SignInUser
 )
-from .condition import (
-    Condition,
-    ConditionCreate,
-    ConditionUpdate,
+from .sleep import (
+    SleepCreate,
+    SleepUpdate,
+    Sleep
 )
