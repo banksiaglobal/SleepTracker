@@ -2,7 +2,7 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
-    server_port: int = 5000
+    # server_port: int = 9000
     database_url: str = "k8s-40b17863-af56bd00-60d9960a90-25f20b8a1a8e2ff3.elb.us-east-1.amazonaws.com"
     database_port: int = 1972
     iris_username: str = "SQLAdmin"

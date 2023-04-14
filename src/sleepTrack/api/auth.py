@@ -19,7 +19,7 @@ router = APIRouter(
 
 @router.post(
     '/sign-up/',
-    # response_model=models.Token,
+    response_model=models.Token,
     status_code=status.HTTP_201_CREATED,
 )
 def sign_up(
@@ -35,7 +35,8 @@ def sign_up(
 )
 
 def sign_in(
-    auth_data: OAuth2PasswordRequestForm = Depends(),
+    # auth_data: OAuth2PasswordRequestForm = Depends(),
+    auth_data: models.SignInUser,
     auth_service: AuthService = Depends(),
 ):
     return auth_service.authenticate_user(

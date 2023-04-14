@@ -3,8 +3,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from . import api
 from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
-app = FastAPI()
 
+
+
+
+
+app = FastAPI(
+    title='SleepTracker',
+    version='1.0.0',
+)
 
 origins = ["*"]
 app.add_middleware(HTTPSRedirectMiddleware)
@@ -16,13 +23,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app = FastAPI(
-    title='SleepTracker',
-    version='1.0.0',
-)
-
 app.include_router(api.router)
 
-@app.get("/api")
+@app.get("/")
 def root():
-    return {'message':'Hello world'}
+    return {'message':'Hello sleep'}
