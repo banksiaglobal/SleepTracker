@@ -21,7 +21,7 @@ cur.execute('CREATE TABLE SysUsers (id serial PRIMARY KEY,'
             'DOB datetime NOT NULL)')
 
 cur.execute('CREATE TABLE Conditions (id serial PRIMARY KEY,'
-            'activity varchar (10) NOT NULL,'
+            'activity varchar (10) ,'
             'stress int NOT NULL,'
             'coffee int NOT NULL,'
             'emotion int NOT NULL,'
