@@ -1,0 +1,12 @@
+<header class="header">
+  <div class="main-container">
+    <div class="header-box-logout" *ngIf="isUserLogout">
+      <div class="main-title">Sheep’s Galaxy</div>
+    </div>
+    <div class="header-box-login" *ngIf="isUserLogin">
+      <div class="main-title">SG</div>
+
+      <app-user-settings-menu></app-user-settings-menu>
+    </div>
+  </div>
+</header>

@@ -22,3 +22,7 @@ app = FastAPI(
 )
 
 app.include_router(api.router)
+
+@app.get("/api")
+def root():
+    return {'message':'Hello world'}

@@ -1,0 +1,19 @@
+<ng-container *ngIf="messages$ | async as messages">
+  <div class="messages-container" *ngIf="showMessages" [@openClose]>
+    <div class="mat-elevation-z8 messages-box" [ngClass]="isWarn ? 'warn' : ''">
+      <div class="message bold-weight" *ngFor="let message of messages">
+        {{ message }}
+      </div>
+      <mat-icon *ngIf="isWarn" color="warn" class="close" (click)="onClose()"
+        >cancel</mat-icon
+      >
+      <mat-icon
+        *ngIf="!isWarn"
+        color="primary"
+        class="close"
+        (click)="onClose()"
+        >cancel</mat-icon
+      >
+    </div>
+  </div>
+</ng-container>

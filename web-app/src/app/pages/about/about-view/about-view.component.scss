@@ -1,0 +1,49 @@
+.page-light {
+  height: 100%;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.content {
+  margin-bottom: 20px;
+
+  color: var(--base-dark-color);
+}
+
+.registre-box {
+  padding: 30px;
+  background-color: var(--base-dark-color);
+  box-shadow: (
+    0px 3px 25px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px -2px 5px 0px rgba(0, 0, 0, 0.12)
+  );
+
+  &-title {
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--accent-color);
+  }
+
+  &-btns {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  button {
+    min-width: 155px;
+    background-color: var(--accent-color);
+    font-weight: 600;
+  }
+}
+
+.title-logo__icon {
+  margin: 40px;
+}

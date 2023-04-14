@@ -1,0 +1,83 @@
+.page-dark {
+  min-height: 85vh;
+  background-color: var(--base-dark-color);
+}
+
+.page-light {
+  min-height: 85vh;
+  background-color: var(--gray-color);
+}
+
+.main-container {
+  margin: 0 auto;
+  max-width: 390px;
+  padding: 0 10px;
+  height: 100%;
+}
+
+.page {
+  padding: 10px 0;
+}
+
+.user-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  background-color: var(--white-color);
+}
+
+/*auth && register*/
+.big-logo {
+  background: url("../assets/sheep-1.png") center no-repeat;
+  height: 266px;
+  width: 100%;
+}
+
+.small-logo {
+  cursor: pointer;
+}
+
+.register-page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-bottom: 10px;
+  color: var(--accent-color);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.title:hover {
+  padding: 0 10px;
+  transition: 0.5s;
+  background-color: var(--accent-color);
+  color: var(--base-dark-color);
+}
+
+.title:not(:hover) {
+  transition: 2s;
+}
+
+.instruction {
+  margin-right: 5px;
+  color: var(--white-color);
+}
+
+.btn-link {
+  text-decoration: none;
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+.page-content {
+  height: 100%;
+}
+
+.link {
+  text-decoration: none;
+}
