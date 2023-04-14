@@ -45,8 +45,8 @@ export class CollectDataFormComponent {
     stress: ['1', [Validators.required]],
     emotion: ['2', [Validators.required]],
     light: ['1', [Validators.required]],
-    bedtime: ['', [Validators.required]],
-    wakeup: ['', [Validators.required]],
+    bedtime: ['22:00', [Validators.required]],
+    wakeup: ['06:00', [Validators.required]],
     sleep: ['1', [Validators.required]],
   });
 
