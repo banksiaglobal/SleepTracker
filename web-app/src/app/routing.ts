@@ -49,6 +49,13 @@ export const APP_ROUTES: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'sleeps',
+    loadComponent: () =>
+      import('./pages/sleeps/sleeps.component').then((c) => c.SleepsComponent),
+    pathMatch: 'full',
+    title: 'Sleeps',
+  },
+  {
     path: 'about',
     loadComponent: () =>
       import('./pages/about/about/about.component').then(

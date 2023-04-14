@@ -27,12 +27,16 @@ export class UserSettingsViewComponent {
 
   @Output() logout = new EventEmitter<any>();
 
-  public goToCompaniesPage() {
-    this.router.navigate(['/companies']);
+  public goToAboutPage() {
+    this.router.navigate(['/about']);
   }
 
-  public goToSettingsPage() {
-    this.router.navigate(['/settings']);
+  public goToAddInfoPage() {
+    this.router.navigate(['/data']);
+  }
+
+  public goToSleepsPage() {
+    this.router.navigate(['/sleeps']);
   }
 
   public userLogout() {
