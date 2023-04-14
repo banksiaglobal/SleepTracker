@@ -12,23 +12,25 @@ import { userGet as userGetMock } from '../../mock';
 export class RegistrationService {
   constructor(
     private storage: LocalStorageService,
-    private auth: AuthService
+    private auth: AuthService,
+    private http: HttpClient
   ) {}
 
-  // signUp(user: IUserRegister): Observable<IToken> {
-  //   return this.httpClient.post<IToken>('/auth/sign-up', user).pipe(
-  //     tap((response: IToken) => {
-  // this.storage.saveTokens(response.access_token);
-  //     }),
-  //     tap(() => this.auth.getCurrentUser()),
-  //     shareReplay()
-  //   );
-  // }
-
   signUp(user: IUserRegister): Observable<IToken> {
-    // this.storage.saveTokens(response.access_token);
-    this.storage.saveTokens(mockToken.access_token);
-    this.auth.getCurrentUser();
-    return of(mockToken);
+    return this.http.post<IToken>('/auth/sign-up', user).pipe(
+      tap((response: IToken) => {
+        console.log(response);
+        this.storage.saveTokens(response.access_token);
+      }),
+      tap(() => this.auth.getCurrentUser()),
+      shareReplay()
+    );
   }
+
+  // signUp(user: IUserRegister): Observable<IToken> {
+  // this.storage.saveTokens(response.access_token);
+  //   this.storage.saveTokens(mockToken.access_token);
+  //   this.auth.getCurrentUser();
+  //   return of(mockToken);
+  // }
 }

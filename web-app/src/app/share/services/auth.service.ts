@@ -33,36 +33,36 @@ export class AuthService {
       this.user.next(user);
     }
   }
+  //mock
+  // signIn(user: IUserAuth): Observable<IToken> {
+  //   this.storage.saveTokens(mockToken.access_token);
+  //   this.getCurrentUser();
+  //   return of(mockToken);
+  // }
+
+  // getCurrentUser(): Observable<IUser> {
+  //   this.storage.saveUser(userGetMock.username);
+  //   this.user.next(userGetMock.username);
+  //   return of(userGetMock);
+  // }
 
   signIn(user: IUserAuth): Observable<IToken> {
-    this.storage.saveTokens(mockToken.access_token);
-    this.getCurrentUser();
-    return of(mockToken);
+    return this.httpClient.post<IToken>('/auth/sign-in', user).pipe(
+      tap((response: IToken) => {
+        this.storage.saveTokens(response.access_token);
+      }),
+      tap(() => this.getCurrentUser()),
+      shareReplay()
+    );
   }
 
-  // signIn(user: IUserAuth): Observable<IToken> {
-  //   return this.httpClient.post<IToken>('/auth/sign-in', user).pipe(
-  //     tap((response: IToken) => {
-  //       this.storage.saveTokens(response.access_token);
-  //     }),
-  //     tap(() => this.getCurrentUser()),
-  //     shareReplay()
-  //   );
-  // }
-
-  // getCurrentUser(): Observable<IUserRegister> {
-  //   return this.httpClient.post<IUserRegister>('/auth/user', null).pipe(
-  //     tap((response: IUserRegister) => {
-  // this.storage.saveUser(response);
-
-  //     }),
-  //     shareReplay()
-  //   );
-  // }
   getCurrentUser(): Observable<IUser> {
-    this.storage.saveUser(userGetMock.username);
-    this.user.next(userGetMock.username);
-    return of(userGetMock);
+    return this.httpClient.post<IUser>('/auth/user', null).pipe(
+      tap((response: IUser) => {
+        this.storage.saveUser(response.username);
+      }),
+      shareReplay()
+    );
   }
 
   public logout(): void {

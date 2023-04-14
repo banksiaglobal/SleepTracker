@@ -61,7 +61,6 @@ export class RegisterComponent {
       new Date(date.getTime() - date.getTimezoneOffset() * 60000)
         .toISOString()
         .split('T')[0] + ' 00:00:00';
-    console.log(dateString);
     return dateString;
   }
 }
