@@ -23,15 +23,13 @@ export class SleepService {
   //   );
   // }
 
-  addSleepSettings(settings: ISleepSettings): Observable<any> {
-    return this.httpClient
-      .post<any>(environment.apiUrl + 'condition', settings)
-      .pipe(
-        tap((response: any) => {
-          console.log(response);
-        }),
+  public addSleepSettings(settings: ISleepSettings): Observable<any> {
+    return this.httpClient.post<any>('sleep/', settings).pipe(
+      tap((response: any) => {
+        console.log(response);
+      }),
 
-        shareReplay()
-      );
+      shareReplay()
+    );
   }
 }

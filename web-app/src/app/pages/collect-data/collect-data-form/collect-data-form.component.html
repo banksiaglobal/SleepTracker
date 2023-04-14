@@ -69,21 +69,25 @@
     <div class="field__time">
       <mat-form-field>
         <label>Bedtime:</label>
-        <input matInput type="time" formControlName="bedtime" #bedtime />
-        <mat-icon matSuffix>schedule</mat-icon>
+        <input matInput type="time" formControlName="start_time" #start_time />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="date" formControlName="start_day" #start_day />
       </mat-form-field>
     </div>
     <div class="field__time">
       <mat-form-field>
-        <label>Wake-up:</label>
-        <input matInput type="time" formControlName="wakeup" #wakeup />
-        <mat-icon matSuffix>schedule</mat-icon>
+        <label>Wake-up time:</label>
+        <input matInput type="time" formControlName="end_time" #end_time />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="date" formControlName="end_day" #end_day />
       </mat-form-field>
     </div>
   </div>
   <div class="field">
     <label>Your feeling in the morning:</label>
-    <mat-radio-group formControlName="sleep" #sleep>
+    <mat-radio-group formControlName="quality" #quality>
       <div>
         <mat-radio-button color="primary" value="1"
           >Is it all? I want to sleep</mat-radio-button
