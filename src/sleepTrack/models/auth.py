@@ -29,6 +29,9 @@ class User(BaseUser):
 class TableUser(User, UserCreate):
     pass
 
+class SignInUser(BaseModel):
+    username: str
+    password: str
 
 class Token(BaseModel):
     access_token: str
