@@ -4,4 +4,18 @@ label {
 
 .field {
   margin-bottom: 10px;
+
+  &__time:nth-child(1) {
+    margin-right: 10px;
+  }
+
+  label {
+    margin-right: 10px;
+  }
+}
+
+.field-time-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

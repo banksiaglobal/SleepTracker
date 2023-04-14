@@ -10,5 +10,5 @@ import { CollectDataFormComponent } from '../collect-data-form/collect-data-form
   styleUrls: ['./collect-data-view.component.scss'],
 })
 export class CollectDataViewComponent {
-  @Output() addData = new EventEmitter<any>();
+  @Output() onSaveSleepSettings = new EventEmitter<any>();
 }

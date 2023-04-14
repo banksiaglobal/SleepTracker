@@ -32,7 +32,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./collect-data-form.component.scss'],
 })
 export class CollectDataFormComponent {
-  @Output() onSignup = new EventEmitter<any>();
+  @Output() onSaveSleepSettings = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder) {}
 
@@ -45,12 +45,12 @@ export class CollectDataFormComponent {
     stress: ['1', [Validators.required]],
     emotion: ['2', [Validators.required]],
     light: ['1', [Validators.required]],
-    bedtime: [[Validators.required]],
-    wakeup: [[Validators.required]],
+    bedtime: ['', [Validators.required]],
+    wakeup: ['', [Validators.required]],
     sleep: ['1', [Validators.required]],
   });
 
   public submitForm(): void {
-    this.onSignup.emit(this.addInfoForm.value);
+    this.onSaveSleepSettings.emit(this.addInfoForm.value);
   }
 }

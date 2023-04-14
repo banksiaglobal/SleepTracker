@@ -10,7 +10,7 @@ import { CollectDataViewComponent } from '../collect-data-view/collect-data-view
   styleUrls: ['./collect-data.component.scss'],
 })
 export class CollectDataComponent {
-  public addData(userSettings: any): void {
+  public onSaveSleepSettings(userSettings: any): void {
     if (userSettings) {
       console.log(userSettings);
     }

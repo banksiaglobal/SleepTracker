@@ -58,25 +58,28 @@
   </div>
   <div class="field">
     <label>Do You sleep with the light:</label>
-    <mat-radio-group formControlName="light" #light>
-      <mat-radio-button color="primary" value="1">No</mat-radio-button>
-      <mat-radio-button color="primary" value="2">Yes</mat-radio-button>
-    </mat-radio-group>
+    <div>
+      <mat-radio-group formControlName="light" #light>
+        <mat-radio-button color="primary" value="1">No</mat-radio-button>
+        <mat-radio-button color="primary" value="2">Yes</mat-radio-button>
+      </mat-radio-group>
+    </div>
   </div>
-
-  <div class="ngx-timepicker-field-example field">
-    <label>Bedtime:</label>
-    <ngx-timepicker-field
-      [format]="24"
-      [defaultTime]="'23:11'"
-    ></ngx-timepicker-field>
-  </div>
-  <div class="ngx-timepicker-field-example field">
-    <label>Wake-up time:</label>
-    <ngx-timepicker-field
-      [format]="24"
-      [defaultTime]="'23:11'"
-    ></ngx-timepicker-field>
+  <div class="field field-time-group">
+    <div class="field__time">
+      <mat-form-field>
+        <label>Bedtime:</label>
+        <input matInput type="time" formControlName="bedtime" #bedtime />
+        <mat-icon matSuffix>schedule</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="field__time">
+      <mat-form-field>
+        <label>Wake-up:</label>
+        <input matInput type="time" formControlName="wakeup" #wakeup />
+        <mat-icon matSuffix>schedule</mat-icon>
+      </mat-form-field>
+    </div>
   </div>
   <div class="field">
     <label>Your feeling in the morning:</label>
@@ -102,6 +105,7 @@
     mat-raised-button
     cdkFocusInitial
     type="submit"
+    [disabled]="addInfoForm.invalid"
   >
     Submit
   </button>
