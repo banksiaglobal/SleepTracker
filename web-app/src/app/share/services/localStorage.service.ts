@@ -35,7 +35,6 @@ export class LocalStorageService {
 
   public getAccessToken(): string {
     const token = localStorage.getItem(DATA.ACCESS_TOKEN);
-    console.log(token);
     if (token) {
       return JSON.parse(token);
     }

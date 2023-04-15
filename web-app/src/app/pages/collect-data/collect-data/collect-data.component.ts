@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { CollectDataViewComponent } from '../collect-data-view/collect-data-view.component';
 import { SleepService } from 'src/app/share/services/sleep.service';
 import { ISleepSettings } from 'src/app/share/interfaces/sleep';
+import { Router } from '@angular/router';
+import { catchError, tap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { MessagesService } from 'src/app/share/services/message.service';
 
 @Component({
   selector: 'app-collect-data',
@@ -12,11 +16,29 @@ import { ISleepSettings } from 'src/app/share/interfaces/sleep';
   styleUrls: ['./collect-data.component.scss'],
 })
 export class CollectDataComponent {
-  constructor(private sleep: SleepService) {}
+  constructor(
+    private sleep: SleepService,
+
+    private message: MessagesService
+  ) {}
   public onSaveSleepSettings(userSettings: ISleepSettings): void {
     if (userSettings) {
       console.log(userSettings);
-      this.sleep.addSleepSettings(userSettings).subscribe();
+      this.sleep
+        .addSleepSettings(userSettings)
+        .pipe(
+          tap(() => {
+            const message = 'Ok! Your sleep was processed';
+            this.message.shomMessage(message);
+          }),
+          catchError((error: any) => {
+            const message = 'The sleep is cancelled';
+            // const errorMessage = error.error.errors[0].params[0];
+            this.message.shomMessage(message);
+            return throwError(() => error);
+          })
+        )
+        .subscribe();
     }
   }
 }

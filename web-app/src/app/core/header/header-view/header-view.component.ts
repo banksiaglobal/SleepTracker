@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserSettingsMenuComponent } from '../../user-settings-menu/user-settings-menu-page/user-settings-menu.component';
 import { AuthService } from 'src/app/share/services/auth.service';
@@ -10,8 +10,11 @@ import { AuthService } from 'src/app/share/services/auth.service';
   templateUrl: './header-view.component.html',
   styleUrls: ['./header-view.component.scss'],
 })
-export class HeaderViewComponent {
-  constructor(public auth: AuthService) {}
+export class HeaderViewComponent implements OnInit {
+  public isUser: boolean;
+  ngOnInit(): void {
+    this.isUser = !!localStorage.getItem('user');
+  }
   @Input() isUserLogout: boolean | null;
 
   @Input() isUserLogin: boolean | null;

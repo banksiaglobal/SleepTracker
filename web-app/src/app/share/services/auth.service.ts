@@ -27,7 +27,7 @@ export class AuthService {
 
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map((loggedIn) => !loggedIn));
     const user = this.storage.getUser();
-
+    console.log(user);
     if (user) {
       this.user.next(user);
     }

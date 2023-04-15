@@ -27,7 +27,6 @@ export class AuthGuard {
     const user = this.authService.user.value;
 
     const userUser = this.storage.getUser();
-    console.log(user, userUser);
     if (!user && !userUser) {
       this.router.navigate(['/signin']);
       return false;

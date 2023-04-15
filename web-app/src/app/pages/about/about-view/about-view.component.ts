@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,7 +8,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './about-view.component.html',
   styleUrls: ['./about-view.component.scss'],
 })
-export class AboutViewComponent {
+export class AboutViewComponent implements OnInit {
+  public isUser: boolean;
+  ngOnInit(): void {
+    this.isUser = !!localStorage.getItem('user');
+  }
   @Input() isUserLogout: boolean | null;
 
   @Input() isUserLogin: boolean | null;

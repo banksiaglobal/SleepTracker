@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   }
 
   private ckeckIsLogin() {
+    console.log(localStorage.getItem('user'));
     this.isUserLogin$ = this.auth.isLoggedIn$;
 
     this.isUserLogout$ = this.auth.isLoggedOut$;

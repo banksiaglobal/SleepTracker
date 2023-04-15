@@ -17,13 +17,11 @@ export class JWTInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
-    console.log(!token);
 
     if (
       token &&
       (!request.url.includes('/sign-up') || !request.url.includes('/sign-in'))
     ) {
-      console.log('add token', token);
       // If we have a token, we set it to the header
       request = request.clone({
         setHeaders: { Authorization: `Bearer ${token}` },
