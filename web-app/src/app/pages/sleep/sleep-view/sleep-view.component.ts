@@ -52,6 +52,8 @@ export class SleepViewComponent {
 
   @Input() sleep: any[] | null;
 
+  @Input() currentAdvice: { prediction: string } | null;
+
   public changeSleep = false;
   public addInfoForm: any;
 
@@ -93,8 +95,8 @@ export class SleepViewComponent {
       comfort: this.addInfoForm.value.comfort,
       stress: this.addInfoForm.value.stress,
       emotion: this.addInfoForm.value.emotion,
-      light:  this.addInfoForm.value.light,
-      quality:  this.addInfoForm.value.quality,
+      light: this.addInfoForm.value.light,
+      quality: this.addInfoForm.value.quality,
     };
     this.onSaveSleepSettings.emit(update);
   }

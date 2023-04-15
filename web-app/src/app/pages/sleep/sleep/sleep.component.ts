@@ -29,6 +29,8 @@ export class SleepComponent {
 
   public currentsleep$!: Observable<ISleepSettings>;
 
+  public currentAdvice$!: Observable<{ prediction: string }>;
+
   ngOnInit(): void {
     this.loadSleep();
   }
@@ -38,6 +40,7 @@ export class SleepComponent {
     if (id) {
       this.sleepId = id;
       this.getSleepById(this.sleepId);
+      this.getSleepAdviceById(this.sleepId);
     } else this.router.navigate(['/about']);
   }
 
@@ -73,5 +76,22 @@ export class SleepComponent {
       );
       this.sleep$ = this.loading.showSpinnerUntilCompleted(sleep$);
     }
+  }
+
+  private getSleepAdviceById(id: string): Observable<{ prediction: string }> {
+    const currentAdvice$ = this.sleep.getSleepAdviceById(id).pipe(
+      map((data) => {
+        return data;
+      }),
+      catchError((err) => {
+        const message = 'Could not load package.';
+        this.message.shomMessage(message, err);
+        return throwError(() => err);
+      })
+    );
+
+    this.currentAdvice$ =
+      this.loading.showSpinnerUntilCompleted(currentAdvice$);
+    return this.currentAdvice$;
   }
 }

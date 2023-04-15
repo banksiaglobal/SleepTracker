@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   public isUserLogin$: Observable<boolean>;
 
   public isUserLogout$: Observable<boolean>;
+  public user$: Observable<string>;
 
   ngOnInit(): void {
     this.ckeckIsLogin();
@@ -25,11 +26,12 @@ export class HeaderComponent implements OnInit {
   }
 
   private ckeckIsLogin() {
-    console.log(localStorage.getItem('user'));
     this.isUserLogin$ = this.auth.isLoggedIn$;
     this.auth.isLoggedIn$.subscribe((data) => console.log(data));
 
     this.isUserLogout$ = this.auth.isLoggedOut$;
     this.auth.isLoggedOut$.subscribe((data) => console.log(data));
+
+    this.user$ = this.auth.user$;
   }
 }

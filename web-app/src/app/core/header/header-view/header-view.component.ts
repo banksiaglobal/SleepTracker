@@ -12,11 +12,10 @@ import { AuthService } from 'src/app/share/services/auth.service';
 })
 export class HeaderViewComponent implements OnInit {
   public isUser: boolean;
-  ngOnInit(): void {
-    this.isUser = !!localStorage.getItem('user');
-    console.log(this.isUser);
-  }
+  ngOnInit(): void {}
   @Input() isUserLogout: boolean | null;
 
   @Input() isUserLogin: boolean | null;
+
+  @Input() user: string | null;
 }

@@ -19,6 +19,7 @@
           <p>lights: {{ currentsleep?.lights | emotionPipe }}</p>
           <p>quality: {{ currentsleep?.quality | sonPipe }}</p>
           <p>stress: {{ currentsleep?.stress | stressPipe }}</p>
+          <div class="advice">result: {{ currentAdvice?.prediction }}</div>
         </mat-card-content>
         <mat-card-actions>
           <button color="primary" mat-button-raised (click)="changeDataSleep()">

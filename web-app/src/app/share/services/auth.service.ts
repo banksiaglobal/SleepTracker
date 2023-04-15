@@ -50,6 +50,7 @@ export class AuthService {
     return this.httpClient.get<IUser>(environment.apiUrl + 'auth/user').pipe(
       tap((response: IUser) => {
         this.storage.saveUser(response.username);
+        this.user.next(response.username);
         this.goToApp();
       }),
       shareReplay()
