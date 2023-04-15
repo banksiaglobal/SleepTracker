@@ -17,23 +17,26 @@ export class JWTInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
+    console.log(!token);
 
     if (
       token &&
       (!request.url.includes('/sign-up') || !request.url.includes('/sign-in'))
     ) {
+      console.log('add token', token);
       // If we have a token, we set it to the header
       request = request.clone({
         setHeaders: { Authorization: `Bearer ${token}` },
       });
     }
-    if (!token) this.authService.logout();
+    // if (!token) this.authService.logout();
 
     return next.handle(request).pipe(
       catchError((err) => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             // redirect user to the logout page
+            this.authService.logout();
           }
         }
         return throwError(err);

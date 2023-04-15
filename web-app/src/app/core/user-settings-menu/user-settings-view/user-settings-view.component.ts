@@ -32,7 +32,7 @@ export class UserSettingsViewComponent {
   }
 
   public goToAddInfoPage() {
-    this.router.navigate(['/data']);
+    this.router.navigate(['/sleep']);
   }
 
   public goToSleepsPage() {

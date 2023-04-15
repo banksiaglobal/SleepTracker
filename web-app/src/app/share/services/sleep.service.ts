@@ -1,35 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, shareReplay, tap } from 'rxjs';
-import { IUserRegister } from '../interfaces/register';
-import { IToken } from '../interfaces/token';
+import { Observable, shareReplay, tap } from 'rxjs';
 import { AuthService } from './auth.service';
-import { token as mockToken, userGet } from '../../mock';
-import { userGet as userGetMock } from '../../mock';
-import { ISleepSettings } from '../interfaces/sleep';
 import { environment } from 'src/environment/env';
+import { ISleepSettings } from '../interfaces/sleep';
 
 @Injectable({ providedIn: 'root' })
 export class SleepService {
   constructor(private auth: AuthService, private httpClient: HttpClient) {}
 
-  // signUp(user: IUserRegister): Observable<IToken> {
-  //   return this.httpClient.post<IToken>('/auth/sign-up', user).pipe(
-  //     tap((response: IToken) => {
-  // this.storage.saveTokens(response.access_token);
-  //     }),
-  //     tap(() => this.auth.getCurrentUser()),
-  //     shareReplay()
-  //   );
-  // }
-
   public addSleepSettings(settings: ISleepSettings): Observable<any> {
-    return this.httpClient.post<any>('sleep/', settings).pipe(
-      tap((response: any) => {
-        console.log(response);
-      }),
+    return this.httpClient
+      .post<any>(environment.apiUrl + 'sleeps', settings)
+      .pipe(
+        tap((response: any) => {
+          console.log(response);
+        }),
 
-      shareReplay()
-    );
+        shareReplay()
+      );
   }
 }

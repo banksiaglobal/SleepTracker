@@ -8,14 +8,16 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataGuard implements CanActivate {
   constructor(
-    private localStorage: LocalStorageService,
-    private router: Router
+    private auth: AuthService,
+    private router: Router,
+    private storage: LocalStorageService
   ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -25,10 +27,14 @@ export class DataGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const user = this.localStorage.getUser();
+    const user = this.auth.user.value;
 
-    if (user) {
+    const userUser = this.storage.getUser();
+
+    if (userUser) {
+      this.router.navigate(['/sleep']);
       return false;
-    } else return true;
+    }
+    return true;
   }
 }

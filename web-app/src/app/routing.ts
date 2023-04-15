@@ -1,12 +1,11 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './share/guards/auth.guard';
-import { DataGuard } from './share/guards/data.guard';
 
 export const APP_ROUTES: Routes = [
   {
-    path: 'signup',
+    path: '',
     pathMatch: 'full',
-    redirectTo: 'info',
+    redirectTo: 'about',
   },
   {
     path: 'signup',
@@ -16,7 +15,6 @@ export const APP_ROUTES: Routes = [
         (m) => m.RegisterComponent
       ),
     title: 'Register',
-    canActivate: [DataGuard],
   },
 
   {
@@ -25,16 +23,15 @@ export const APP_ROUTES: Routes = [
     loadComponent: () =>
       import('./auth/auth/auth.component').then((m) => m.AuthComponent),
     title: 'Auth',
-    canActivate: [DataGuard],
   },
   {
-    path: 'data',
+    path: 'sleep',
     pathMatch: 'full',
     loadComponent: () =>
       import('./pages/collect-data/collect-data/collect-data.component').then(
-        (m) => m.CollectDataComponent
+        (c) => c.CollectDataComponent
       ),
-    title: 'Data',
+    title: 'Sleep',
     canActivate: [AuthGuard],
   },
   {
@@ -56,6 +53,7 @@ export const APP_ROUTES: Routes = [
       ),
     pathMatch: 'full',
     title: 'Sleeps',
+    canActivate: [AuthGuard],
   },
   {
     path: 'about',
@@ -68,6 +66,6 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'about',
+    redirectTo: '',
   },
 ];
