@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './sleeps-view.component.html',
-  styleUrls: ['./sleeps-view.component.scss']
+  styleUrls: ['./sleeps-view.component.scss'],
 })
-export class SleepsViewComponent {
-
-}
+export class SleepsViewComponent {}
