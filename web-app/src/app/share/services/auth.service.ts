@@ -38,7 +38,6 @@ export class AuthService {
       .post<IToken>(environment.apiUrl + 'auth/sign-in', user)
       .pipe(
         tap((response: IToken) => {
-          console.log(response, 'save token');
           this.storage.saveTokens(response.access_token);
         }),
         tap(() => this.getCurrentUser().subscribe()),
@@ -51,7 +50,6 @@ export class AuthService {
     return this.httpClient.get<IUser>(environment.apiUrl + 'auth/user').pipe(
       tap((response: IUser) => {
         this.storage.saveUser(response.username);
-        console.log(response, 'save user');
         this.goToApp();
       }),
       shareReplay()
@@ -65,7 +63,7 @@ export class AuthService {
   }
 
   private goToApp(): void {
-    this.router.navigate(['/about']);
+    this.router.navigate(['/sleep']);
   }
 
   public getToken(): string {

@@ -13,6 +13,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ISleepSettings } from 'src/app/share/interfaces/sleep';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const today = new Date();
 const day = today.getDate();
@@ -32,6 +34,8 @@ const year = today.getFullYear();
     MatInputModule,
     NgxMaterialTimepickerModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 
   templateUrl: './collect-data-form.component.html',

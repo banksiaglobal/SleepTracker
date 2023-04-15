@@ -2,12 +2,16 @@ label {
   font-weight: 600;
 }
 
+.field::after,
+.field::before {
+  content: "";
+  width: 100%;
+  margin: 5px 0;
+  border-bottom: 1px solid #d1d7dc;
+}
+
 .field {
   margin-bottom: 10px;
-
-  &__time:nth-child(1) {
-    margin-right: 10px;
-  }
 
   label {
     margin-right: 10px;

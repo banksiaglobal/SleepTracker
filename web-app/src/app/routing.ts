@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './share/guards/auth.guard';
+import { DataGuard } from './share/guards/data.guard';
 
 export const APP_ROUTES: Routes = [
   {
@@ -15,6 +16,7 @@ export const APP_ROUTES: Routes = [
         (m) => m.RegisterComponent
       ),
     title: 'Register',
+    canActivate: [DataGuard],
   },
 
   {
@@ -23,6 +25,7 @@ export const APP_ROUTES: Routes = [
     loadComponent: () =>
       import('./auth/auth/auth.component').then((m) => m.AuthComponent),
     title: 'Auth',
+    canActivate: [DataGuard],
   },
   {
     path: 'sleep',

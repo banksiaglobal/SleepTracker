@@ -67,24 +67,47 @@
   </div>
   <div class="field field-time-group">
     <div class="field__time">
+      <label>Time for bed:</label>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [formControlName]="'start_day'"
+          #start_day
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
       <mat-form-field>
-        <label>Bedtime:</label>
         <input matInput type="time" formControlName="start_time" #start_time />
       </mat-form-field>
-      <mat-form-field>
-        <input matInput type="date" formControlName="start_day" #start_day />
-      </mat-form-field>
     </div>
+
     <div class="field__time">
-      <mat-form-field>
-        <label>Wake-up time:</label>
-        <input matInput type="time" formControlName="end_time" #end_time />
+      <label>Wake-up time:</label>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input
+          matInput
+          [matDatepicker]="picker2"
+          formControlName="end_day"
+          #end_day
+          #start_day
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker2">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="date" formControlName="end_day" #end_day />
+        <input matInput type="time" formControlName="end_time" #end_time />
       </mat-form-field>
     </div>
   </div>
+
   <div class="field">
     <label>Your feeling in the morning:</label>
     <mat-radio-group formControlName="quality" #quality>
