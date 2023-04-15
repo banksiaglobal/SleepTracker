@@ -9,12 +9,24 @@ from fastapi import (
 from .. import models
 from ..services.auth import get_current_user
 from ..services.sleep import SleepsService
+from ..services.prediction import PredictionsService
 
 
 router = APIRouter(
     prefix='/sleeps',
     tags=['sleeps'],
 )
+
+@router.get(
+    '/prediction/{sleep_id}'
+)
+def get_prediction(
+    sleep_id: int,
+    user: models.User = Depends(get_current_user),
+    prediction_service: PredictionsService = Depends(),
+):
+    return prediction_service.get(user.id, sleep_id)
+
 
 
 @router.get(

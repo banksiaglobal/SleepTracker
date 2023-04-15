@@ -1,12 +1,30 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
 from fastapi import Query
 from enum import Enum
 from datetime import datetime
+
+
+class PredictionKind(BaseModel):
+    value: int
+
+    @property
+    def status(self):
+        if self.value == 1:
+            return "unsatisfactory"
+        elif self.value == 2:
+            return "satisfactory"
+        elif self.value == 3:
+            return "great"
+        return "indefinite"
+
+class Prediction(BaseModel):
+    prediction: str
 
 class ActivityKind(str, Enum):
     LIGHT = 'light'
     MEDIUM = 'medium'
     HARD = 'hard'
+
 
 class BaseSleep(BaseModel):
     activity: ActivityKind
