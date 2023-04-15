@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CollectDataFormComponent } from '../collect-data-form/collect-data-form.component';
 
@@ -10,5 +10,6 @@ import { CollectDataFormComponent } from '../collect-data-form/collect-data-form
   styleUrls: ['./collect-data-view.component.scss'],
 })
 export class CollectDataViewComponent {
+  @Input() listAdvice: any[] | null;
   @Output() onSaveSleepSettings = new EventEmitter<any>();
 }
