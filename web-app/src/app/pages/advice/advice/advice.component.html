@@ -1,1 +1,4 @@
-<app-advice-view></app-advice-view>
+<app-advice-view
+  [currentAdvice]="currentAdvice$ | async"
+  [currentsleep]="currentsleep$ | async"
+></app-advice-view>

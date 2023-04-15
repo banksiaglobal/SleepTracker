@@ -1,12 +1,15 @@
 <div class="page-light">
   <div class="main-container">
     <div class="page">
-      <h2>Some information for you:</h2>
-      <div class="content">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ab amet
-        odio. Quo deleniti culpa error, impedit nobis voluptatem. Ratione ut
-        porro ipsum eum. Dignissimos neque qui sit in dolores?
-      </div>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <h2>{{ currentsleep?.end_time | date }}</h2>
+          <h4>Sum up:</h4>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="sleep-advice">{{ currentAdvice?.prediction }}</p>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>

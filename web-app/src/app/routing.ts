@@ -37,7 +37,16 @@ export const APP_ROUTES: Routes = [
     title: 'Auth',
     canActivate: [AuthGuard],
   },
-
+  {
+    path: 'sleep/new',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./pages/collect-data/collect-data/collect-data.component').then(
+        (c) => c.CollectDataComponent
+      ),
+    title: 'New sleep',
+    canActivate: [AuthGuard],
+  },
   {
     path: 'sleep/:id',
     pathMatch: 'full',
@@ -45,21 +54,12 @@ export const APP_ROUTES: Routes = [
       import('./pages/sleep/sleep/sleep.component').then(
         (c) => c.SleepComponent
       ),
-    title: 'Auth',
+    title: 'Sleep',
     canActivate: [AuthGuard],
   },
+
   {
-    path: 'sleep/new',
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./pages/collect-data/collect-data/collect-data.component').then(
-        (m) => m.CollectDataComponent
-      ),
-    title: 'Auth',
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'advice',
+    path: 'advice/:id',
     loadComponent: () =>
       import('./pages/advice/advice/advice.component').then(
         (c) => c.AdviceComponent

@@ -18,8 +18,8 @@ export class SleepService {
     return this.httpClient
       .post<any>(environment.apiUrl + 'sleeps', settings)
       .pipe(
-        tap((response: any) => {
-          this.onGoToAdvice();
+        tap((response: ISleepSettings) => {
+          response.id ? this.onGoToAdvice(response.id) : undefined;
         }),
 
         shareReplay()
@@ -38,7 +38,12 @@ export class SleepService {
       .pipe(shareReplay());
   }
 
-  public onGoToAdvice() {
-    this.router.navigate(['/advice']);
+  public getSleepAdviceById(id: string): Observable<{ prediction: string }> {
+    return this.httpClient
+      .get<any>(environment.apiUrl + 'sleeps/prediction/' + id)
+      .pipe(shareReplay());
+  }
+  public onGoToAdvice(id: string) {
+    this.router.navigate(['/advice', id]);
   }
 }
