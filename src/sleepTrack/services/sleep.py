@@ -97,7 +97,7 @@ class SleepsService:
                 'emotion': sleeps[i][4],
                 'lights': sleeps[i][5],
                 'comfort': sleeps[i][6],
-                'sleep': sleeps[i][7],
+                'quality': sleeps[i][7],
                 'user_id': sleeps[i][8],
                 'start_time': sleeps[i][9],
                 'end_time': sleeps[i][10]
