@@ -12,9 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./advice-view.component.scss'],
 })
 export class AdviceViewComponent {
-  ngOnInit(): void {
-    console.log(this.currentAdvice?.prediction, this.currentsleep);
-  }
   @Input() currentAdvice: { prediction: string } | null;
 
   @Input() currentsleep: ISleepSettings | null;
