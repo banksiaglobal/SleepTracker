@@ -8,5 +8,7 @@ from .auth import (
 from .sleep import (
     SleepCreate,
     SleepUpdate,
-    Sleep
+    Sleep,
+    PredictionKind,
+    Prediction
 )
