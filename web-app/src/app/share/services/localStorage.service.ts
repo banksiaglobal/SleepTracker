@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 enum DATA {
-  ACCESS_TOKEN = 'acess_token',
+  ACCESS_TOKEN = 'access_token',
   CURRENT_USER = 'user',
 }
 

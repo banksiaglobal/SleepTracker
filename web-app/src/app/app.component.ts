@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FooterComponent } from './core/footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { SpinnerComponent } from './core/spinner/spinner.component';
 import { HeaderComponent } from './core/header/header/header.component';
 import { MessageComponent } from './core/message/message.component';
 import { MessagesService } from './share/services/message.service';
+import { SpinnerComponent } from './core/spinner/spinner-page/spinner.component';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,7 @@ import { MessagesService } from './share/services/message.service';
     RouterModule,
     SpinnerComponent,
     MessageComponent,
+    RouterModule,
   ],
   providers: [MessagesService],
   standalone: true,

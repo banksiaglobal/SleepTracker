@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderViewComponent } from '../header-view/header-view.component';
-import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { LocalStorageService } from 'src/app/share/services/localStorage.service';
+import { Observable } from 'rxjs';
+
 import { AuthService } from 'src/app/share/services/auth.service';
 
 @Component({
@@ -18,14 +17,21 @@ export class HeaderComponent implements OnInit {
   public isUserLogin$: Observable<boolean>;
 
   public isUserLogout$: Observable<boolean>;
+  public user$: Observable<string>;
 
   ngOnInit(): void {
     this.ckeckIsLogin();
+    const user = this.auth.user.value;
+    console.log('header', user);
   }
 
   private ckeckIsLogin() {
     this.isUserLogin$ = this.auth.isLoggedIn$;
+    this.auth.isLoggedIn$.subscribe((data) => console.log(data));
 
     this.isUserLogout$ = this.auth.isLoggedOut$;
+    this.auth.isLoggedOut$.subscribe((data) => console.log(data));
+
+    this.user$ = this.auth.user$;
   }
 }

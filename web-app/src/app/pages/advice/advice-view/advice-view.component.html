@@ -1,1 +1,15 @@
-<p>advice-view works!</p>
+<div class="page-light">
+  <div class="main-container">
+    <div class="page">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <h2>{{ currentsleep?.end_time | date }}</h2>
+          <h4>Sum up:</h4>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="sleep-advice">{{ currentAdvice?.prediction }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

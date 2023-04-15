@@ -2,4 +2,5 @@
   (onSignin)="onSignin($event)"
   (onGoToAboutPage)="onGoToAboutPage()"
   (onGoToOppositeForm)="onGoToOppositeForm()"
+  [currentUser]="currentUser$ | async"
 ></app-auth-view>

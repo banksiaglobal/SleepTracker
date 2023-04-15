@@ -4,9 +4,9 @@ import { DataGuard } from './share/guards/data.guard';
 
 export const APP_ROUTES: Routes = [
   {
-    path: 'signup',
+    path: '',
     pathMatch: 'full',
-    redirectTo: 'info',
+    redirectTo: 'about',
   },
   {
     path: 'signup',
@@ -18,7 +18,6 @@ export const APP_ROUTES: Routes = [
     title: 'Register',
     canActivate: [DataGuard],
   },
-
   {
     path: 'signin',
     pathMatch: 'full',
@@ -27,18 +26,40 @@ export const APP_ROUTES: Routes = [
     title: 'Auth',
     canActivate: [DataGuard],
   },
+
   {
-    path: 'data',
+    path: 'sleeps',
     pathMatch: 'full',
     loadComponent: () =>
-      import('./pages/collect-data/collect-data/collect-data.component').then(
-        (m) => m.CollectDataComponent
+      import('./pages/sleeps-page/sleeps/sleeps.component').then(
+        (c) => c.SleepsComponent
       ),
-    title: 'Data',
+    title: 'Auth',
     canActivate: [AuthGuard],
   },
   {
-    path: 'advice',
+    path: 'sleep/new',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./pages/collect-data/collect-data/collect-data.component').then(
+        (c) => c.CollectDataComponent
+      ),
+    title: 'New sleep',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'sleep/:id',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./pages/sleep/sleep/sleep.component').then(
+        (c) => c.SleepComponent
+      ),
+    title: 'Sleep',
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'advice/:id',
     loadComponent: () =>
       import('./pages/advice/advice/advice.component').then(
         (c) => c.AdviceComponent
@@ -47,13 +68,6 @@ export const APP_ROUTES: Routes = [
     pathMatch: 'full',
     title: 'Advice',
     canActivate: [AuthGuard],
-  },
-  {
-    path: 'sleeps',
-    loadComponent: () =>
-      import('./pages/sleeps/sleeps.component').then((c) => c.SleepsComponent),
-    pathMatch: 'full',
-    title: 'Sleeps',
   },
   {
     path: 'about',
@@ -66,6 +80,6 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'about',
+    redirectTo: '',
   },
 ];

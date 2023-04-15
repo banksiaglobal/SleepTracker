@@ -27,13 +27,14 @@ export class JWTInterceptor implements HttpInterceptor {
         setHeaders: { Authorization: `Bearer ${token}` },
       });
     }
-    if (!token) this.authService.logout();
+    // if (!token) this.authService.logout();
 
     return next.handle(request).pipe(
       catchError((err) => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             // redirect user to the logout page
+            this.authService.logout();
           }
         }
         return throwError(err);

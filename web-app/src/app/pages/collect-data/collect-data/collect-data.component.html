@@ -1,1 +1,4 @@
-<app-collect-data-view (addData)="addData($event)"></app-collect-data-view>
+<app-collect-data-view
+  (onSaveSleepSettings)="onSaveSleepSettings($event)"
+  [sleep]="sleep$ | async"
+></app-collect-data-view>

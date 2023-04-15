@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AboutViewComponent } from '../about-view/about-view.component';
 import { AuthService } from 'src/app/share/services/auth.service';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { LocalStorageService } from 'src/app/share/services/localStorage.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { LocalStorageService } from 'src/app/share/services/localStorage.service
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
-  public isUserLogin$: Observable<boolean>;
+  public isUserLogin$: Observable<boolean> = of(false);
 
   public isUserLogout$: Observable<boolean>;
   constructor(public auth: AuthService, private router: Router) {}
@@ -23,9 +23,14 @@ export class AboutComponent implements OnInit {
   }
 
   private ckeckIsLogin() {
-    this.isUserLogin$ = this.auth.isLoggedIn$;
-
-    this.isUserLogout$ = this.auth.isLoggedOut$;
+    this.auth.isLoggedIn$
+      .pipe(
+        map((res) => {
+          console.log(res);
+          this.isUserLogin$ = of(res);
+        })
+      )
+      .subscribe();
   }
 
   public goToLoginPage(): void {

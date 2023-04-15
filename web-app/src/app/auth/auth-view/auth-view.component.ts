@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormAuthComponent } from '../form-auth/form-auth.component';
 
@@ -10,6 +10,8 @@ import { FormAuthComponent } from '../form-auth/form-auth.component';
   styleUrls: ['./auth-view.component.scss'],
 })
 export class AuthViewComponent {
+  @Input() currentUser: any;
+  
   @Output() onSignin = new EventEmitter<any>();
 
   @Output() onGoToAboutPage = new EventEmitter<Event>();

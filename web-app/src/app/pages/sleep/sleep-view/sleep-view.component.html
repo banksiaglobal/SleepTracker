@@ -1,0 +1,215 @@
+<div class="page-light">
+  <div class="main-container">
+    <div class="page">
+      <mat-card class="example-card" *ngIf="!changeSleep">
+        <mat-card-header>
+          <mat-card-title class="title-box">Card of sleep: </mat-card-title>
+          <mat-card-subtitle
+            >{{ currentsleep?.start_time | date }} -
+            {{ currentsleep?.end_time | date }}</mat-card-subtitle
+          >
+        </mat-card-header>
+        <mat-card-content>
+          <p>activity: {{ currentsleep?.activity }}</p>
+          <p>coffee: {{ currentsleep?.coffee | coffeePipe }} (cups)</p>
+          <p>comfort: {{ currentsleep?.comfort | comfortPipe }}</p>
+          <p>
+            good emotion before sleep: {{ currentsleep?.emotion | emotionPipe }}
+          </p>
+          <p>lights: {{ currentsleep?.lights | emotionPipe }}</p>
+          <p>quality: {{ currentsleep?.quality | sonPipe }}</p>
+          <p>stress: {{ currentsleep?.stress | stressPipe }}</p>
+          <div class="advice">result: {{ currentAdvice?.prediction }}</div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button color="primary" mat-button-raised (click)="changeDataSleep()">
+            change
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <div class="small-info">
+        *there is some info about your sleep, you can click 'Change' and update
+        it
+      </div>
+      <div class="change-form" *ngIf="changeSleep">
+        <form
+          class="user-form"
+          [formGroup]="addInfoForm"
+          (ngSubmit)="submitForm()"
+        >
+          <div class="title-box">Change info about your sleep:</div>
+          <div class="field">
+            <label>Activity:</label>
+            <mat-radio-group [formControlName]="'activity'" #activity>
+              <mat-radio-button color="primary" value="light"
+                >light</mat-radio-button
+              >
+              <mat-radio-button color="primary" value="medium"
+                >medium</mat-radio-button
+              >
+              <mat-radio-button color="primary" value="hard"
+                >hard</mat-radio-button
+              >
+            </mat-radio-group>
+          </div>
+          <div class="field">
+            <label>Cups of cofee:</label>
+            <mat-radio-group [formControlName]="'coffee'" #coffee>
+              <mat-radio-button color="primary" value="1">0-1</mat-radio-button>
+              <mat-radio-button color="primary" value="2">2-3</mat-radio-button>
+              <mat-radio-button color="primary" value="3"
+                >> 3
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="field">
+            <label>Bed accessories:</label>
+            <mat-radio-group [formControlName]="'comfort'" #comfort>
+              <div>
+                <mat-radio-button color="primary" value="1"
+                  >not bad</mat-radio-button
+                >
+              </div>
+              <div>
+                <mat-radio-button color="primary" value="2"
+                  >ok</mat-radio-button
+                >
+              </div>
+              <div>
+                <mat-radio-button color="primary" value="3"
+                  >absolutely comfortable
+                </mat-radio-button>
+              </div>
+            </mat-radio-group>
+          </div>
+          <div class="field">
+            <label>Stress' level:</label>
+            <mat-radio-group [formControlName]="'stress'" #stress>
+              <div>
+                <mat-radio-button color="primary" value="1"
+                  >I am happy</mat-radio-button
+                >
+              </div>
+              <div>
+                <mat-radio-button color="primary" value="2"
+                  >Not bad</mat-radio-button
+                >
+              </div>
+              <div>
+                <mat-radio-button color="primary" value="3"
+                  >Dangerous! I'm swamped.
+                </mat-radio-button>
+              </div>
+            </mat-radio-group>
+          </div>
+          <div class="field">
+            <label>Good emotions before sleep:</label><br />
+            <mat-radio-group [formControlName]="'emotion'" #emotion>
+              <mat-radio-button color="primary" value="1">No</mat-radio-button>
+              <mat-radio-button color="primary" value="2">Yes</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="field">
+            <label>Do you sleep with the light:</label>
+            <div>
+              <mat-radio-group [formControlName]="'light'" #light>
+                <mat-radio-button color="primary" value="1"
+                  >No</mat-radio-button
+                >
+                <mat-radio-button color="primary" value="2"
+                  >Yes</mat-radio-button
+                >
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class="field field-time-group">
+            <div class="field__time">
+              <label>Time for bed:</label>
+              <mat-form-field class="example-full-width" appearance="outline">
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  [formControlName]="'start_day'"
+                  #start_day
+                />
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                  <mat-icon matDatepickerToggleIcon
+                    >keyboard_arrow_down</mat-icon
+                  >
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  type="time"
+                  [formControlName]="'start_time'"
+                  #start_time
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="field__time">
+              <label>Wake-up time:</label>
+              <mat-form-field class="example-full-width" appearance="outline">
+                <input
+                  matInput
+                  [matDatepicker]="picker2"
+                  [formControlName]="'end_day'"
+                  #end_day
+                  #start_day
+                />
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker2">
+                  <mat-icon matDatepickerToggleIcon
+                    >keyboard_arrow_down</mat-icon
+                  >
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  type="time"
+                  [formControlName]="'end_time'"
+                  #end_time
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Your feeling in the morning:</label>
+            <mat-radio-group [formControlName]="'quality'" #quality>
+              <div>
+                <mat-radio-button color="primary" value="1"
+                  >Is it all? I want to sleep</mat-radio-button
+                >
+              </div>
+              <div>
+                <mat-radio-button color="primary" value="2"
+                  >I am ok</mat-radio-button
+                >
+              </div>
+              <div>
+                <mat-radio-button color="primary" value="3"
+                  >Wooow! The world is mine!</mat-radio-button
+                >
+              </div>
+            </mat-radio-group>
+          </div>
+          <button
+            color="primary"
+            mat-raised-button
+            cdkFocusInitial
+            type="submit"
+            [disabled]="addInfoForm.invalid"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

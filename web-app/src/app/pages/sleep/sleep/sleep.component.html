@@ -1,0 +1,6 @@
+<app-sleep-view
+  [currentsleep]="currentsleep$ | async"
+  (onSaveSleepSettings)="onSaveSleepSettings($event)"
+  [sleep]="sleep$ | async"
+  [currentAdvice]="currentAdvice$ | async"
+></app-sleep-view>

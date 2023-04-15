@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserSettingsMenuComponent } from '../../user-settings-menu/user-settings-menu-page/user-settings-menu.component';
+import { AuthService } from 'src/app/share/services/auth.service';
 
 @Component({
   selector: 'app-header-view',
@@ -9,8 +10,12 @@ import { UserSettingsMenuComponent } from '../../user-settings-menu/user-setting
   templateUrl: './header-view.component.html',
   styleUrls: ['./header-view.component.scss'],
 })
-export class HeaderViewComponent {
+export class HeaderViewComponent implements OnInit {
+  public isUser: boolean;
+  ngOnInit(): void {}
   @Input() isUserLogout: boolean | null;
 
   @Input() isUserLogin: boolean | null;
+
+  @Input() user: string | null;
 }
