@@ -1,8 +1,14 @@
 version: "3.4"
 services:
-  web:
+  backend:
     build: .
     volumes:
       - .:/code
     ports:
       - "9000:9000"
+  frontend:
+    build: ./web-app/
+    volumes:
+      - .:/web
+    ports:
+      - "8080:80"
