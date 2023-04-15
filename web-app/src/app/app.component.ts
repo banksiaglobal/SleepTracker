@@ -19,6 +19,7 @@ import { SpinnerComponent } from './core/spinner/spinner-page/spinner.component'
     RouterModule,
     SpinnerComponent,
     MessageComponent,
+    RouterModule,
   ],
   providers: [MessagesService],
   standalone: true,

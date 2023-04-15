@@ -31,12 +31,12 @@ export class UserSettingsViewComponent {
     this.router.navigate(['/about']);
   }
 
-  public createNewSleep() {
-    this.router.navigate(['/sleeps/new']);
-  }
-
   public goToSleepsPage() {
     this.router.navigate(['/sleeps']);
+  }
+
+  public createNewSleep() {
+    this.router.navigate(['/sleep/new']);
   }
 
   public userLogout() {

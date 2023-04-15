@@ -18,7 +18,6 @@ export const APP_ROUTES: Routes = [
     title: 'Register',
     canActivate: [DataGuard],
   },
-
   {
     path: 'signin',
     pathMatch: 'full',
@@ -27,11 +26,36 @@ export const APP_ROUTES: Routes = [
     title: 'Auth',
     canActivate: [DataGuard],
   },
+
   {
     path: 'sleeps',
     pathMatch: 'full',
-    loadChildren: () => import('./sleeprouting').then((r) => r.SLEEPS_ROUTES),
-    title: 'Sleeps',
+    loadComponent: () =>
+      import('./pages/sleeps-page/sleeps/sleeps.component').then(
+        (c) => c.SleepsComponent
+      ),
+    title: 'Auth',
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'sleep/:id',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./pages/sleep/sleep/sleep.component').then(
+        (c) => c.SleepComponent
+      ),
+    title: 'Auth',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'sleep/new',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./pages/collect-data/collect-data/collect-data.component').then(
+        (m) => m.CollectDataComponent
+      ),
+    title: 'Auth',
     canActivate: [AuthGuard],
   },
   {
@@ -43,16 +67,6 @@ export const APP_ROUTES: Routes = [
 
     pathMatch: 'full',
     title: 'Advice',
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'sleeps',
-    loadComponent: () =>
-      import('./pages/sleeps-page/sleeps/sleeps.component').then(
-        (c) => c.SleepsComponent
-      ),
-    pathMatch: 'full',
-    title: 'Sleeps',
     canActivate: [AuthGuard],
   },
   {
