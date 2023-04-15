@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderViewComponent } from '../header-view/header-view.component';
 import { Observable } from 'rxjs';
-
 import { AuthService } from 'src/app/share/services/auth.service';
 
 @Component({
@@ -22,7 +21,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.ckeckIsLogin();
     const user = this.auth.user.value;
-    console.log('header', user);
   }
 
   private ckeckIsLogin() {
