@@ -49,6 +49,6 @@ export class RegistrationService {
 
   private goToApp(): void {
     console.log('go to app');
-    this.router.navigate(['/sleep']);
+    this.router.navigate(['/sleeps']);
   }
 }

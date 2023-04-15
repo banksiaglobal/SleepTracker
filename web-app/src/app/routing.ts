@@ -28,13 +28,10 @@ export const APP_ROUTES: Routes = [
     canActivate: [DataGuard],
   },
   {
-    path: 'sleep',
+    path: 'sleeps',
     pathMatch: 'full',
-    loadComponent: () =>
-      import('./pages/collect-data/collect-data/collect-data.component').then(
-        (c) => c.CollectDataComponent
-      ),
-    title: 'Sleep',
+    loadChildren: () => import('./sleeprouting').then((r) => r.SLEEPS_ROUTES),
+    title: 'Sleeps',
     canActivate: [AuthGuard],
   },
   {

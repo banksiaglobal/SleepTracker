@@ -17,7 +17,7 @@ import { LoadingService } from 'src/app/share/services/loading.service';
   styleUrls: ['./collect-data.component.scss'],
 })
 export class CollectDataComponent {
-  public listAdvice$!: Observable<any[]>;
+  public sleep$!: Observable<any[]>;
   constructor(
     private sleep: SleepService,
     private loadingService: LoadingService,
@@ -26,8 +26,7 @@ export class CollectDataComponent {
 
   public onSaveSleepSettings(userSettings: ISleepSettings): void {
     if (userSettings) {
-      console.log(userSettings);
-      const listAdvice$ = this.sleep.addSleepSettings(userSettings).pipe(
+      const sleep$ = this.sleep.addSleepSettings(userSettings).pipe(
         tap(() => {
           const message = 'Ok! Your sleep was processed';
           this.message.shomMessage(message);
@@ -39,8 +38,7 @@ export class CollectDataComponent {
           return throwError(() => error);
         })
       );
-      this.listAdvice$ =
-        this.loadingService.showSpinnerUntilCompleted(listAdvice$);
+      this.sleep$ = this.loadingService.showSpinnerUntilCompleted(sleep$);
     }
   }
 }

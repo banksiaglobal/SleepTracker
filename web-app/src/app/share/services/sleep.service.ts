@@ -26,6 +26,18 @@ export class SleepService {
       );
   }
 
+  public allSleeps(): Observable<any> {
+    return this.httpClient
+      .get<any>(environment.apiUrl + 'sleeps')
+      .pipe(shareReplay());
+  }
+
+  public getSleepById(id: string): Observable<ISleepSettings> {
+    return this.httpClient
+      .get<ISleepSettings>(environment.apiUrl + 'sleeps/' + id)
+      .pipe(shareReplay());
+  }
+
   public onGoToAdvice() {
     this.router.navigate(['/advice']);
   }

@@ -31,8 +31,8 @@ export class UserSettingsViewComponent {
     this.router.navigate(['/about']);
   }
 
-  public goToAddInfoPage() {
-    this.router.navigate(['/sleep']);
+  public createNewSleep() {
+    this.router.navigate(['/sleeps/new']);
   }
 
   public goToSleepsPage() {

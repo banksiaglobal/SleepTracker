@@ -14,6 +14,7 @@ export class HeaderViewComponent implements OnInit {
   public isUser: boolean;
   ngOnInit(): void {
     this.isUser = !!localStorage.getItem('user');
+    console.log(this.isUser);
   }
   @Input() isUserLogout: boolean | null;
 

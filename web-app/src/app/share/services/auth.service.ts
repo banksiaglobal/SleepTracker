@@ -63,7 +63,7 @@ export class AuthService {
   }
 
   private goToApp(): void {
-    this.router.navigate(['/sleep']);
+    this.router.navigate(['/sleeps']);
   }
 
   public getToken(): string {
