@@ -56,6 +56,6 @@ export class AuthComponent {
   }
 
   public onGoToAboutPage() {
-    this.router.navigate(['/sleep']);
+    this.router.navigate(['/about']);
   }
 }
