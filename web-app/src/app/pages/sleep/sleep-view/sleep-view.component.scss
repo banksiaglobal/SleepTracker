@@ -1,0 +1,40 @@
+p {
+  margin-bottom: 5px;
+}
+
+.title-box {
+  font-weight: 700;
+  color: var(--base-dark-color);
+  font-size: 25px;
+}
+
+label {
+  font-weight: 600;
+}
+
+.field::after,
+.field::before {
+  content: "";
+  width: 100%;
+  margin: 5px 0;
+  border-bottom: 1px solid #d1d7dc;
+}
+
+.field {
+  margin-bottom: 10px;
+
+  label {
+    margin-right: 10px;
+  }
+}
+
+.field-time-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.small-info {
+  font-size: 14px;
+  text-align: left;
+}

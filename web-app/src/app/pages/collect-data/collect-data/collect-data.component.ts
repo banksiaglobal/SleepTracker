@@ -17,7 +17,7 @@ import { LoadingService } from 'src/app/share/services/loading.service';
   styleUrls: ['./collect-data.component.scss'],
 })
 export class CollectDataComponent {
-  public sleep$!: Observable<any[]>;
+  public sleep$!: Observable<ISleepSettings[]>;
   constructor(
     private sleep: SleepService,
     private loadingService: LoadingService,

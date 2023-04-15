@@ -83,7 +83,6 @@ export class CollectDataFormComponent {
         stress: Number(this.addInfoForm.value.stress),
         quality: Number(this.addInfoForm.value.quality),
       };
-      console.log(userSleep);
       this.onSaveSleepSettings.emit(userSleep);
     }
   }
