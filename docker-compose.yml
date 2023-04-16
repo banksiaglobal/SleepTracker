@@ -7,13 +7,12 @@ services:
     ports:
       - "9000:9000"
     environment:
-    # Write your environments below
-      - DATABASE_URL=
-      - JWT_SECRET=
-      - IRIS_USERNAME=
-      - IRIS_PASSWORD=
-      - DATABASE_PORT=
-      - IRIS_NAMESPACE=
+      - DATABASE_URL=k8s-40b17863-af56bd00-60d9960a90-25f20b8a1a8e2ff3.elb.us-east-1.amazonaws.com
+      - JWT_SECRET=k8UPGvLZLtAIx200kGo2T0oDYNVduIujO1ogxJCyofk
+      - IRIS_USERNAME=SQLAdmin
+      - IRIS_PASSWORD=tq3cCgYB8pHPcuFLJIXH6TW7E9k3w!
+      - DATABASE_PORT=1972
+      - IRIS_NAMESPACE=USER
   frontend:
     build: ./web-app/
     volumes:
