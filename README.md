@@ -1,14 +1,14 @@
 # Sheep’s Galaxy
-# About
+## About
 
-This project demonstrates an application for sleep quality monitoring and analysis. <br />
+<p>This project demonstrates an application for sleep quality monitoring and analysis. <br />
 Client side: TypeScript with Angular framework.<br />
 Server side: Python with FastAPI and DB-API to connect to the database. <br />
-Database: The database is hosted in InterSystems IRIS Cloud SQL, and we used one of its features, IntegratedML, to predict sleep quality.
+Database: The database is hosted in InterSystems IRIS Cloud SQL, and we used one of its features, IntegratedML, to predict sleep quality.</p>
 
-# Quick start
+## Quick start
 
-Execute the following commands in the terminal to start the project:
+<p>Execute the following commands in the terminal to start the project:
 ```bash
 git clone https://github.com/banksiaglobal/SleepTracker
 ```
@@ -17,14 +17,15 @@ docker compose up -d --build
 ```
 The application backend is available at http://localhost:9000/ <br />
 The application frontend is available at http://localhost:8080/
+</p>
 
-# InterSystems IRIS Cloud SQL
+### InterSystems IRIS Cloud SQL
 
-To do this, set up a deployment in the IRIS Cloud SQL portal and write the connection parameters into docker-compose file in the environment section.
+<p>To do this, set up a deployment in the IRIS Cloud SQL portal and write the connection parameters into docker-compose file in the environment section.</p>
  
-## Filling with data
+### Filling with data
 
-The "sleeps" table of our database is populated with the generated data. To do this, run the following commands in the docker terminal:
+<p>The "sleeps" table of our database is populated with the generated data. To do this, run the following commands in the docker terminal:
 1. activate virtual environment
 
 ```bash
@@ -43,9 +44,11 @@ python .\sleepTrack\db_init.py
 ```bash
 python .\sleepTrack\generator.py
 ```
-##  IntegratedML
+</p>
 
-The following sql queries are required to implement machine learning algorithms:
+###  IntegratedML
+
+<p>The following sql queries are required to implement machine learning algorithms:
 
 ```sql
 Create model sleep predicting (quality) from SQLUser.Sleeps
@@ -64,13 +67,10 @@ where user_id = 1 and id = 1
 ```
 where the prediction field contains a prediction of the quality of sleep, the probability_quality field contains the probability that the dream will be "qualitative" based on its entered characteristics.
 
-Application demonstration
-gif
-To further explore our app in live demo, follow this link:
- https://sleeptracker.banksiaglobal.com
 Thanks!
+</p>
 
 ## Developers of project:
-- Backend: Maria Gladkova
-- Frontend: Katsiaryna Shaustruk
-- Backend: Maria Nesterenko
+- Backend: [Maria Gladkova](https://community.intersystems.com/user/maria-gladkova)
+- Frontend: [Katsiaryna Shaustruk](https://community.intersystems.com/user/katsiaryna-shaustruk)
+- Backend: [Maria Nesterenko](https://community.intersystems.com/user/maria-nesterenko)
