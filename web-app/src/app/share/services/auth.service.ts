@@ -10,6 +10,7 @@ import { environment } from 'src/environment/env';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private api = 'http://localhost:9000/';
   public user = new BehaviorSubject<string>('');
 
   public user$: Observable<string> = this.user.asObservable();
@@ -34,20 +35,18 @@ export class AuthService {
   }
 
   signIn(user: IUserAuth): Observable<IToken> {
-    return this.httpClient
-      .post<IToken>(environment.apiUrl + 'auth/sign-in', user)
-      .pipe(
-        tap((response: IToken) => {
-          this.storage.saveTokens(response.access_token);
-        }),
-        tap(() => this.getCurrentUser().subscribe()),
+    return this.httpClient.post<IToken>(this.api + 'auth/sign-in', user).pipe(
+      tap((response: IToken) => {
+        this.storage.saveTokens(response.access_token);
+      }),
+      tap(() => this.getCurrentUser().subscribe()),
 
-        shareReplay()
-      );
+      shareReplay()
+    );
   }
 
   getCurrentUser(): Observable<IUser> {
-    return this.httpClient.get<IUser>(environment.apiUrl + 'auth/user').pipe(
+    return this.httpClient.get<IUser>(this.api + 'auth/user').pipe(
       tap((response: IUser) => {
         this.storage.saveUser(response.username);
         this.user.next(response.username);

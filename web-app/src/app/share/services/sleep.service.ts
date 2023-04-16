@@ -13,34 +13,30 @@ export class SleepService {
     private httpClient: HttpClient,
     private router: Router
   ) {}
-
+  private api = 'http://localhost:9000/';
   public addSleepSettings(settings: ISleepSettings): Observable<any> {
-    return this.httpClient
-      .post<any>(environment.apiUrl + 'sleeps', settings)
-      .pipe(
-        tap((response: ISleepSettings) => {
-          response.id ? this.onGoToAdvice(response.id) : undefined;
-        }),
+    return this.httpClient.post<any>(this.api + 'sleeps', settings).pipe(
+      tap((response: ISleepSettings) => {
+        response.id ? this.onGoToAdvice(response.id) : undefined;
+      }),
 
-        shareReplay()
-      );
+      shareReplay()
+    );
   }
 
   public allSleeps(): Observable<any> {
-    return this.httpClient
-      .get<any>(environment.apiUrl + 'sleeps')
-      .pipe(shareReplay());
+    return this.httpClient.get<any>(this.api + 'sleeps').pipe(shareReplay());
   }
 
   public getSleepById(id: string): Observable<ISleepSettings> {
     return this.httpClient
-      .get<ISleepSettings>(environment.apiUrl + 'sleeps/' + id)
+      .get<ISleepSettings>(this.api + 'sleeps/' + id)
       .pipe(shareReplay());
   }
 
   public getSleepAdviceById(id: string): Observable<{ prediction: string }> {
     return this.httpClient
-      .get<any>(environment.apiUrl + 'sleeps/prediction/' + id)
+      .get<any>(this.api + 'sleeps/prediction/' + id)
       .pipe(shareReplay());
   }
   public onGoToAdvice(id: string) {
