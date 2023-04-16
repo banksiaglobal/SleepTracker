@@ -1,6 +1,6 @@
 from faker import Faker
 from random import choice
-
+from passlib.hash import bcrypt
 import settings
 
 from models.auth import BaseUser, Gender, TableUser
@@ -113,7 +113,7 @@ def gen():
     cur = conn.cursor()
     for i in range(50):
         user_data = generate_user()
-        password = "test"
+        password = bcrypt.hash("test")
         print(user_data.email, user_data.username, password,
               user_data.gender.value, user_data.DOB)
 
