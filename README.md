@@ -71,6 +71,13 @@ where user_id = 1 and id = 1
 ```
 where the prediction field contains a prediction of the quality of sleep, the probability_quality field contains the probability that the dream will be "qualitative" based on its entered characteristics.
 
+### Web-app
+
+https://user-images.githubusercontent.com/110831804/232339940-3f3855c8-7961-4706-be29-b2571d2818fd.mp4
+
+
+
+
 Thanks!
 </p>
 
