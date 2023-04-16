@@ -73,9 +73,7 @@ where the prediction field contains a prediction of the quality of sleep, the pr
 
 ### Web-app
 
-https://user-images.githubusercontent.com/110831804/232339940-3f3855c8-7961-4706-be29-b2571d2818fd.mp4
-
-
+![angular-web](https://user-images.githubusercontent.com/110831804/232340176-382daa9d-28bd-431b-898c-d8b6a396c32f.gif)
 
 
 Thanks!
