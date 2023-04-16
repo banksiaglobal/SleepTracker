@@ -4,39 +4,55 @@
       <div class="content">
         <h3>About:</h3>
         <h5>
-          THIS APP - an example of using InterSystems IRIS Cloud SQL and
-          IntegratedML to sleep analysis
+          Example of using InterSystems IRIS Cloud SQL and IntegratedML to build
+          a sleep analysis applicaion
         </h5>
 
         <p>
-          This project demonstrates a variant of project development with a
-          database deployment in InterSystems IRIS Cloud SQL and using
-          IntegratedML. The theme of our application is user sleep quality
-          monitoring and analysis. The client side of our application was
-          developed using Angular (TS). The server side of our application was
-          developed using FastAPI (Python), DB-API was used to connect to the
-          database. The database is hosted in InterSystems IRIS Cloud SQL, and
+          This project demonstrates an application for sleep quality monitoring
+          and analysis. Client side: TypeScript with Angular framework. Server
+          side: Python with FastAPI and DB-API to connect to the database.
+          Database: The database is hosted in InterSystems IRIS Cloud SQL, and
           we used one of its features, IntegratedML, to predict sleep quality.
         </p>
         <h5>InterSystems IRIS Cloud SQL</h5>
         <p>
-          We use the DB-API to connect to IRIS Cloud SQL from within our
-          application. To do this, we set up a deployment in the IRIS Cloud SQL
-          portal and write the connection data in .env file. The database
-          connection is in the file database.py.
+          To do this, set up a deployment in the IRIS Cloud SQL portal and write
+          the connection parameters into docker-compose file in the environment
+          section.
         </p>
-        <h5>IntegratedML</h5>
+        <h5>Filling with data</h5>
         <p>
           The "sleeps" table of our database is populated with the generated
-          data (you can find the code to auto-populate the table at
-          generator.py). Then the machine learning algorithms provided by the
-          cloud portal in the corresponding sections (Create, Train, Validate)
-          are sequentially applied to the data of this table. Then a sql-query
-          is generated in the Prediction section, which we use in our code for
-          sleep analysis. Example of a sql-query being used: SELECT
-          PREDICT(sleeps use sleeps) as prediction, quality, PROBABILITY(sleeps
-          use sleeps for '3') as probability_quality, * FROM SQLUser.Sleeps
-          where user_id = 1 and id = 1
+          data. To do this, run the following commands in the docker
+          terminal:<br />
+        </p>
+
+        <p>/opt/venv/bin/activate - activate virtual environment</p>
+        <p>cd src</p>
+        <p>python.\sleepTrack\db_init.py - create tables</p>
+        <p>python.\sleepTrack\generator.py - generate data</p>
+        <h5>IntegratedML</h5>
+        <p>
+          The following sql queries are required to implement machine learning
+          algorithms:
+        </p>
+        <p>Create model sleep predicting (quality) from SQLUser.Sleeps</p>
+        <p>Train model sleeps</p>
+        <p>
+          Here we create a machine learning model based on the Sleeps database
+          table. For prediction, we specify the field "quality" ("quality of
+          sleep", the user's sensation after sleep). As a result of training, we
+          get prediction and probability_quality fields, which we use later, for
+          example, in such a sql query:
+        </p>
+        <p>
+          SELECT PREDICT(sleeps use sleeps) as prediction, quality,
+          PROBABILITY(sleeps use sleeps for '3') as probability_quality, * FROM
+          SQLUser.Sleeps where user_id = 1 and id = 1 <br />
+          where the prediction field contains a prediction of the quality of
+          sleep, the probability_quality field contains the probability that the
+          dream will be "qualitative" based on its entered characteristics.
         </p>
 
         <div>

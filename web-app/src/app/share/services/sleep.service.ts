@@ -24,6 +24,21 @@ export class SleepService {
     );
   }
 
+  public changeSleepSettings(
+    id: string,
+    settings: ISleepSettings
+  ): Observable<ISleepSettings> {
+    return this.httpClient
+      .put<ISleepSettings>(this.api + 'sleeps/' + id, settings)
+      .pipe(
+        tap((response: ISleepSettings) => {
+          response.id ? this.onGoToAdvice(response.id) : undefined;
+        }),
+
+        shareReplay()
+      );
+  }
+
   public allSleeps(): Observable<any> {
     return this.httpClient.get<any>(this.api + 'sleeps').pipe(shareReplay());
   }

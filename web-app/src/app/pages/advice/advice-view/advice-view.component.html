@@ -9,6 +9,11 @@
         <mat-card-content>
           <p class="sleep-advice">{{ currentAdvice?.prediction }}</p>
         </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="goToSleep()">
+            Change
+          </button>
+        </mat-card-actions>
       </mat-card>
     </div>
   </div>

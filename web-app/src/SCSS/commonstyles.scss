@@ -52,17 +52,6 @@
   cursor: pointer;
 }
 
-.title:hover {
-  padding: 0 10px;
-  transition: 0.5s;
-  background-color: var(--accent-color);
-  color: var(--base-dark-color);
-}
-
-.title:not(:hover) {
-  transition: 2s;
-}
-
 .instruction {
   margin-right: 5px;
   color: var(--white-color);

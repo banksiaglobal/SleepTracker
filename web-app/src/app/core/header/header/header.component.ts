@@ -20,15 +20,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.ckeckIsLogin();
-    const user = this.auth.user.value;
   }
 
   private ckeckIsLogin() {
     this.isUserLogin$ = this.auth.isLoggedIn$;
-    this.auth.isLoggedIn$.subscribe((data) => console.log(data));
 
     this.isUserLogout$ = this.auth.isLoggedOut$;
-    this.auth.isLoggedOut$.subscribe((data) => console.log(data));
 
     this.user$ = this.auth.user$;
   }

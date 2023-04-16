@@ -37,7 +37,6 @@ export class SleepsViewComponent {
   }
 
   public viewSleep(current: ISleepSettings): void {
-    console.log('popup');
     this.router.navigate(['/sleep', current.id]);
   }
 }

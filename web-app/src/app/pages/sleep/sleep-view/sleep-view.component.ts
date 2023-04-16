@@ -50,7 +50,7 @@ export class SleepViewComponent {
 
   @Output() onSaveSleepSettings = new EventEmitter<any>();
 
-  @Input() sleep: any[] | null;
+  @Input() sleep: ISleepSettings | null;
 
   @Input() currentAdvice: { prediction: string } | null;
 
