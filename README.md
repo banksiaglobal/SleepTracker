@@ -1,4 +1,5 @@
 # Sheep’s Galaxy
+# Attention! This project in progres
 ## About
 
 <p>This project demonstrates an application for sleep quality monitoring and analysis. <br />
@@ -28,6 +29,7 @@ The application frontend is available at http://localhost:8080/
 ### Filling with data
 
 <p>The "sleeps" table of our database is populated with the generated data. To do this, run the following commands in the docker terminal:
+
 1. activate virtual environment
 
 ```bash
