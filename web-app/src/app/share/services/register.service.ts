@@ -36,7 +36,7 @@ export class RegistrationService {
   }
 
   signUp(user: IUserRegister): Observable<IToken> {
-    return this.httpClient.post<IToken>(this.api + +'auth/sign-up', user).pipe(
+    return this.httpClient.post<IToken>(this.api + 'auth/sign-up', user).pipe(
       tap((response: IToken) => {
         this.storage.saveTokens(response.access_token);
       }),
