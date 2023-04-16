@@ -72,4 +72,8 @@ export class AdviceComponent {
     this.currentsleep$ = this.loading.showSpinnerUntilCompleted(currentSleep$);
     return this.currentsleep$;
   }
+
+  public onSleepPage(currentsleep: ISleepSettings): void {
+    this.router.navigate(['/sleep', currentsleep.id]);
+  }
 }

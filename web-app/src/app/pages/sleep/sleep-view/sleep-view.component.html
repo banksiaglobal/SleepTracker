@@ -27,7 +27,7 @@
           </button>
         </mat-card-actions>
       </mat-card>
-      <div class="small-info">
+      <div class="small-info" *ngIf="!changeSleep">
         *there is some info about your sleep, you can click 'Change' and update
         it
       </div>
@@ -68,11 +68,6 @@
               <div>
                 <mat-radio-button color="primary" value="1"
                   >not bad</mat-radio-button
-                >
-              </div>
-              <div>
-                <mat-radio-button color="primary" value="2"
-                  >ok</mat-radio-button
                 >
               </div>
               <div>

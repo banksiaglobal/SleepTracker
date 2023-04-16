@@ -1,4 +1,5 @@
 <app-advice-view
   [currentAdvice]="currentAdvice$ | async"
   [currentsleep]="currentsleep$ | async"
+  (onSleepPage)="onSleepPage($event)"
 ></app-advice-view>

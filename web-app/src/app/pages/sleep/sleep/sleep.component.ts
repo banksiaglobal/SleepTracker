@@ -23,7 +23,9 @@ export class SleepComponent {
     private message: MessagesService,
     private loading: LoadingService
   ) {}
-  public sleep$!: Observable<ISleepSettings[]>;
+  public sleep$!: Observable<ISleepSettings>;
+
+  private id: string;
 
   private sleepId: string;
 
@@ -62,18 +64,21 @@ export class SleepComponent {
 
   public onSaveSleepSettings(userSettings: ISleepSettings): void {
     if (userSettings) {
-      const sleep$ = this.sleep.addSleepSettings(userSettings).pipe(
-        tap(() => {
-          const message = 'Ok! Your sleep was processed';
-          this.message.shomMessage(message);
-        }),
-        catchError((error: any) => {
-          const message = 'The sleep is cancelled';
-          // const errorMessage = error.error.errors[0].params[0];
-          this.message.shomMessage(message);
-          return throwError(() => error);
-        })
-      );
+      const sleep$ = this.sleep
+        .changeSleepSettings(this.sleepId, userSettings)
+        .pipe(
+          tap(() => {
+            const message = 'Ok! Your sleep was processed';
+            this.message.shomMessage(message);
+          }),
+          catchError((error: any) => {
+            const message = 'The sleep is cancelled';
+            // const errorMessage = error.error.errors[0].params[0];
+            this.message.shomMessage(message);
+            this.onGoToAdvice(this.sleepId);
+            return throwError(() => error);
+          })
+        );
       this.sleep$ = this.loading.showSpinnerUntilCompleted(sleep$);
     }
   }
@@ -93,5 +98,9 @@ export class SleepComponent {
     this.currentAdvice$ =
       this.loading.showSpinnerUntilCompleted(currentAdvice$);
     return this.currentAdvice$;
+  }
+
+  public onGoToAdvice(id: string) {
+    this.router.navigate(['/advice', id]);
   }
 }
