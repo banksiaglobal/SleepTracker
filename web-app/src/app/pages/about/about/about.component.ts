@@ -26,7 +26,6 @@ export class AboutComponent implements OnInit {
     this.auth.isLoggedIn$
       .pipe(
         map((res) => {
-          console.log(res);
           this.isUserLogin$ = of(res);
         })
       )

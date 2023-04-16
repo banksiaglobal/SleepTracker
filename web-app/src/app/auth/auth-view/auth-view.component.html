@@ -2,9 +2,8 @@
   <div class="main-container">
     <div class="page register-page">
       <div class="big-logo"></div>
-      <div class="title" (click)="onGoToAboutPage.emit()">
-        The place for your healthy sleep
-      </div>
+      <div class="title">The place for your healthy sleep</div>
+
       <div class="instruction">
         <span class="instruction">{{ instruction }}</span>
         <span class="btn-link" (click)="onGoToOppositeForm.emit()">{{
@@ -12,6 +11,13 @@
         }}</span>
       </div>
       <app-form-auth (onSignin)="onSignin.emit($event)"></app-form-auth>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onGoToAboutPage.emit()"
+      >
+        About
+      </button>
     </div>
   </div>
 </div>
