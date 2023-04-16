@@ -27,7 +27,7 @@ export class RegisterComponent {
   public onSignup(signupForm: IUserRegister): void {
     signupForm.DOB = this.convertDate(new Date(signupForm.DOB));
 
-    const currentUser$ = this.registre.signUp(signupForm).pipe(
+    const currentUser$ = this.registre.signUp({ user: signupForm }).pipe(
       tap(() => this.goToApp()),
       tap(() => {
         const message = 'Welcome to app!';

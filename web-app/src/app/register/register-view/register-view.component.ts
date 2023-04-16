@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormRegisterComponent } from '../form-register/form-register.component';
 import { IUserRegister } from 'src/app/share/interfaces/register';
@@ -11,6 +11,8 @@ import { IUserRegister } from 'src/app/share/interfaces/register';
   styleUrls: ['./register-view.component.scss'],
 })
 export class RegisterViewComponent {
+  @Input() currentUser: any;
+
   @Output() onSignup = new EventEmitter<IUserRegister>();
 
   @Output() onGoToOppositeForm = new EventEmitter<Event>();

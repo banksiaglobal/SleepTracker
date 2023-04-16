@@ -7,6 +7,7 @@ import { LocalStorageService } from './localStorage.service';
 import { AuthService } from './auth.service';
 import { environment } from 'src/environment/env';
 import { Router } from '@angular/router';
+import { LoadingService } from './loading.service';
 
 @Injectable({ providedIn: 'root' })
 export class RegistrationService {
@@ -19,11 +20,14 @@ export class RegistrationService {
 
   public isLoggedOut$: Observable<boolean>;
 
+  public currentUser$: Observable<any>;
+
   constructor(
     private storage: LocalStorageService,
     private auth: AuthService,
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {
     this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
 
@@ -35,7 +39,7 @@ export class RegistrationService {
     }
   }
 
-  signUp(user: IUserRegister): Observable<IToken> {
+  signUp({ user }: { user: IUserRegister }): Observable<IToken> {
     return this.httpClient.post<IToken>(this.api + 'auth/sign-up', user).pipe(
       tap((response: IToken) => {
         this.storage.saveTokens(response.access_token);

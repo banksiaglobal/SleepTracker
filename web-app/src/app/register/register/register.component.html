@@ -2,4 +2,5 @@
   (onSignup)="onSignup($event)"
   (onGoToOppositeForm)="onGoToOppositeForm()"
   (onGoToAboutPage)="onGoToAboutPage()"
+  [currentUser]="currentUser$ | async"
 ></app-register-view>
