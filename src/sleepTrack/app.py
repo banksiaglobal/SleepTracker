@@ -1,13 +1,11 @@
 from fastapi import FastAPI
-# from fastapi.middleware.cors import CORSMiddleware  не работает
 from . import api
-from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 from starlette.middleware.cors import CORSMiddleware
+
 app = FastAPI(
-    title='SleepTracker',
+    title='Sheep’s Galaxy',
     version='1.0.0'
 )
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,10 +15,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 app.include_router(api.router)
+
 
 @app.get("/")
 def root():
-    return {'message':'Hello sleep'}
-
+    return {'message': 'Sheep’s Galaxy'}

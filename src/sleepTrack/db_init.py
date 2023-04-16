@@ -4,14 +4,11 @@ import settings
 set = settings.settings
 
 conn = iris.connect(set.database_url, set.database_port, set.iris_namespace, set.iris_username, set.iris_password)
-# conn = iris.connect(set.database_url, set.database_port, set.iris_namespace, set.iris_username, set.iris_password)
-
 
 # Open a cursor to perform database operations
 cur = conn.cursor()
 
 # Execute a command: this creates a new table
-cur.execute('DROP TABLE IF EXISTS Conditions')
 cur.execute('DROP TABLE IF EXISTS Sleeps')
 cur.execute('DROP TABLE IF EXISTS SysUsers')
 cur.execute('CREATE TABLE SysUsers (id serial PRIMARY KEY,'

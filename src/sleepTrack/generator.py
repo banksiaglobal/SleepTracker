@@ -1,6 +1,6 @@
 from faker import Faker
 from random import choice
-
+from passlib.hash import bcrypt
 import settings
 
 from models.auth import BaseUser, Gender, TableUser
@@ -15,7 +15,6 @@ set = settings.settings
 
 fake = Faker()
 
-from typing import Union
 
 def determine_sleep_quality(sleep: BaseSleep) -> int:
     # Calculate the quality score based on the given factors
@@ -60,7 +59,8 @@ def determine_sleep_quality(sleep: BaseSleep) -> int:
         quality -= 2
     elif end_hour - start_hour < 5:
         quality -= 1
-    else:  quality += 1
+    else:
+        quality += 1
 
     # Return the final quality score or a message if it's out of range
 
@@ -71,6 +71,7 @@ def determine_sleep_quality(sleep: BaseSleep) -> int:
     elif quality < 9:
         return 3
     return 3
+
 
 def generate_user():
     gender = choice(list(Gender))
@@ -113,7 +114,7 @@ def gen():
     cur = conn.cursor()
     for i in range(50):
         user_data = generate_user()
-        password = "test"
+        password = bcrypt.hash("test")
         print(user_data.email, user_data.username, password,
               user_data.gender.value, user_data.DOB)
 
@@ -143,12 +144,9 @@ def gen():
                 quality=random.randint(1, 3),
             )
             sleep_data.quality = determine_sleep_quality(sleep_data)
-            print(
-                f" activiti '{sleep_data.activity.value}', stress '{sleep_data.stress}', coffee '{sleep_data.coffee}',"
-                f" emotion '{sleep_data.emotion}', lights '{sleep_data.lights}', comfort '{sleep_data.comfort}', "
-                f" sleep '{sleep_data.quality}', id '{user.id}', '{sleep_data.start_time}', '{sleep_data.end_time}'")
             cur.execute(
-                f"INSERT INTO Sleeps (activity, stress, coffee, emotion, lights, comfort, quality, user_id, start_time, end_time)"
+                f"INSERT INTO Sleeps (activity, stress, coffee, emotion, "
+                f"lights, comfort, quality, user_id, start_time, end_time)"
                 f"VALUES ('{sleep_data.activity.value}', '{sleep_data.stress}', '{sleep_data.coffee}',"
                 f" '{sleep_data.emotion}', '{sleep_data.lights}', '{sleep_data.comfort}', "
                 f"'{sleep_data.quality}', '{user.id}', '{sleep_data.start_time}', '{sleep_data.end_time}')")

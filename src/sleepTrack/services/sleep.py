@@ -45,7 +45,7 @@ class SleepsService:
         cur.execute(f"UPDATE Sleeps SET activity = '{sleep_data.activity.value}', "
                     f"stress = '{sleep_data.stress}', coffee = '{sleep_data.coffee}',"
                     f" emotion = '{sleep_data.emotion}', lights = '{sleep_data.lights}', "
-                    f"comfort = '{sleep_data.comfort}', quality = '{sleep_data.sleep}', "
+                    f"comfort = '{sleep_data.comfort}', quality = '{sleep_data.quality}', "
                     f"start_time = '{sleep_data.start_time}', end_time = '{sleep_data.end_time}'"
                     f"where user_id = '{user_id}' and id = '{sleep_id}'")
         condition = self._get(user_id, sleep_id)
@@ -58,11 +58,6 @@ class SleepsService:
     ) -> models.Sleep:
 
         cur = self.connection.cursor()
-        # cur.execute(
-        #     f"INSERT INTO Sleeps (activity, stress, coffee, emotion, lights, comfort, quality, user_id, start_time, end_time) "
-        #     f"VALUES ('{sleep_data.activity.value}', '{sleep_data.stress}', '{sleep_data.coffee}',"
-        #     f" '{sleep_data.emotion}', '{sleep_data.lights}', '{sleep_data.comfort}', "
-        #     f"'{sleep_data.quality}', '{user_id}', '{sleep_data.start_time}', '{sleep_data.end_time}')")
         cur.execute(
             f"INSERT INTO Sleeps (activity, stress, coffee, emotion, lights, comfort, quality, user_id, start_time, end_time)"
             f"VALUES ('{sleep_data.activity.value}', '{sleep_data.stress}', '{sleep_data.coffee}',"
