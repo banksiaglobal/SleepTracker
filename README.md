@@ -9,9 +9,11 @@ Database: The database is hosted in InterSystems IRIS Cloud SQL, and we used one
 ## Quick start
 
 <p>Execute the following commands in the terminal to start the project:
+
 ```bash
 git clone https://github.com/banksiaglobal/SleepTracker
 ```
+
 ```bash
 docker compose up -d --build
 ```
