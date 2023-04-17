@@ -11,7 +11,6 @@ import { LoadingService } from './loading.service';
 
 @Injectable({ providedIn: 'root' })
 export class RegistrationService {
-  private api = 'http://sleeptracker.banksiaglobal.com:9000/';
   public user = new BehaviorSubject<string>('');
 
   public user$: Observable<string> = this.user.asObservable();
@@ -40,14 +39,16 @@ export class RegistrationService {
   }
 
   signUp({ user }: { user: IUserRegister }): Observable<IToken> {
-    return this.httpClient.post<IToken>(this.api + 'auth/sign-up', user).pipe(
-      tap((response: IToken) => {
-        this.storage.saveTokens(response.access_token);
-      }),
-      tap(() => this.auth.getCurrentUser().subscribe()),
-      tap(() => this.goToApp()),
-      shareReplay()
-    );
+    return this.httpClient
+      .post<IToken>(environment.apiUrl + 'auth/sign-up', user)
+      .pipe(
+        tap((response: IToken) => {
+          this.storage.saveTokens(response.access_token);
+        }),
+        tap(() => this.auth.getCurrentUser().subscribe()),
+        tap(() => this.goToApp()),
+        shareReplay()
+      );
   }
 
   private goToApp(): void {
