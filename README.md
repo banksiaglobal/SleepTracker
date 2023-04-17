@@ -1,5 +1,6 @@
 # Sheep’s Galaxy
 # Attention! This project in progres
+
 ## About
 
 <p>This project demonstrates an application for sleep quality monitoring and analysis. <br />
@@ -71,10 +72,12 @@ where user_id = 1 and id = 1
 ```
 where the prediction field contains a prediction of the quality of sleep, the probability_quality field contains the probability that the dream will be "qualitative" based on its entered characteristics.
 
-### Web-app
+## Application demonstration
 
 ![angular-web](https://user-images.githubusercontent.com/110831804/232340176-382daa9d-28bd-431b-898c-d8b6a396c32f.gif)
 
+To find out more about our app, use the online demo:
+http://sleeptracker.banksiaglobal.com
 
 Thanks!
 </p>
