@@ -17,7 +17,7 @@ services:
   frontend:
     build:
       context: ./web-app
-      dockerfile: ./web-app/Dockerfile
+      dockerfile: ./Dockerfile
     volumes:
       - .:/web
     ports:
