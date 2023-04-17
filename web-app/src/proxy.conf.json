@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "http://sleeptracker.banksiaglobal.com:9000/",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

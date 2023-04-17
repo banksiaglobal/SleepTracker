@@ -5,13 +5,12 @@ import { IUserRegister } from '../interfaces/register';
 import { IToken } from '../interfaces/token';
 import { LocalStorageService } from './localStorage.service';
 import { AuthService } from './auth.service';
-import { environment } from 'src/environment/env';
 import { Router } from '@angular/router';
 import { LoadingService } from './loading.service';
+import { environment } from 'src/environment/env';
 
 @Injectable({ providedIn: 'root' })
 export class RegistrationService {
-  private api = 'http://sleeptracker.banksiaglobal.com:9000/';
   public user = new BehaviorSubject<string>('');
 
   public user$: Observable<string> = this.user.asObservable();
@@ -26,8 +25,7 @@ export class RegistrationService {
     private storage: LocalStorageService,
     private auth: AuthService,
     private httpClient: HttpClient,
-    private router: Router,
-    private loadingService: LoadingService
+    private router: Router
   ) {
     this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
 
@@ -40,14 +38,16 @@ export class RegistrationService {
   }
 
   signUp({ user }: { user: IUserRegister }): Observable<IToken> {
-    return this.httpClient.post<IToken>(this.api + 'auth/sign-up', user).pipe(
-      tap((response: IToken) => {
-        this.storage.saveTokens(response.access_token);
-      }),
-      tap(() => this.auth.getCurrentUser().subscribe()),
-      tap(() => this.goToApp()),
-      shareReplay()
-    );
+    return this.httpClient
+      .post<IToken>(environment.apiUrl + 'auth/sign-up', user)
+      .pipe(
+        tap((response: IToken) => {
+          this.storage.saveTokens(response.access_token);
+        }),
+        tap(() => this.auth.getCurrentUser().subscribe()),
+        tap(() => this.goToApp()),
+        shareReplay()
+      );
   }
 
   private goToApp(): void {
