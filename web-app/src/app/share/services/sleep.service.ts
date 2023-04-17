@@ -13,7 +13,7 @@ export class SleepService {
     private httpClient: HttpClient,
     private router: Router
   ) {}
-  private api = 'http://localhost:9000/';
+  private api = 'http://sleeptracker.banksiaglobal.com:9000/';
   public addSleepSettings(settings: ISleepSettings): Observable<any> {
     return this.httpClient.post<any>(this.api + 'sleeps', settings).pipe(
       tap((response: ISleepSettings) => {

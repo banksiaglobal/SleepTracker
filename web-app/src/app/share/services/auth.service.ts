@@ -10,7 +10,7 @@ import { environment } from 'src/environment/env';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private api = 'http://localhost:9000/';
+  private api = 'http://sleeptracker.banksiaglobal.com:9000/';
   public user = new BehaviorSubject<string>('');
 
   public user$: Observable<string> = this.user.asObservable();
