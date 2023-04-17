@@ -8,12 +8,12 @@ services:
       - "9000:9000"
     #write your environments below
     environment:
-      - DATABASE_URL=
-      - JWT_SECRET=
-      - IRIS_USERNAME=
-      - IRIS_PASSWORD=
-      - DATABASE_PORT=
-      - IRIS_NAMESPACE=
+      - DATABASE_URL=${{ secrets.DATABASE_URL }}
+      - JWT_SECRET=${{ secrets.JWT_SECRET }}
+      - IRIS_USERNAME=SQLAdmin
+      - IRIS_PASSWORD=${{ secrets.IRIS_PASSWORD }}
+      - DATABASE_PORT=1972
+      - IRIS_NAMESPACE=USER
   frontend:
     build: ./web-app/
     volumes:
