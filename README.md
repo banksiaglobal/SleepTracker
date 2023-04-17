@@ -34,13 +34,13 @@ The application frontend is available at http://localhost:8080/
 1. create tables
 
 ```bash
-http://localhost:9000//utils/create
+http://localhost:9000/utils/create
 ```
 
 2. generate data
 
 ```bash
-http://localhost:9000//utils/generate
+http://localhost:9000/utils/generate
 ```
 
 <p>*The body of each request must contain the following fields:
