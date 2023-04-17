@@ -36,7 +36,7 @@ export class AuthComponent {
         this.message.shomMessage(message);
       }),
       catchError((error: any) => {
-        const message = 'The auth is cancelled';
+        const message = 'The authorisation is cancelled';
         // const errorMessage = error.error.errors[0].params[0];
         this.message.shomMessage(message);
         return throwError(() => error);
