@@ -28,26 +28,26 @@ The application frontend is available at http://localhost:8080/
  
 ### Filling with data
 
-<p>The "sleeps" table of our database is populated with the generated data. To do this, run the following commands in the docker terminal:
+<p>The "sleeps" table of our database is populated with the generated data. To do this, send a request to the server:
 
-1. activate virtual environment
 
-```bash
-/opt/venv/bin/activate
-```
-
-2. create tables
+1. create tables
 
 ```bash
-cd src
-python .\sleepTrack\db_init.py
+http://localhost:9000//utils/create
 ```
 
-3. generate data
+2. generate data
 
 ```bash
-python .\sleepTrack\generator.py
+http://localhost:9000//utils/generate
 ```
+
+<p>*The body of each request must contain the following fields:
+
+1. url - url database
+2. password - password of database
+
 </p>
 
 ###  IntegratedML
