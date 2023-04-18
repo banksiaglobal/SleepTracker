@@ -30,7 +30,7 @@ def get_prediction(
 
 
 @router.get(
-    '/',
+    '',
     response_model=List[models.Sleep],
 )
 def get_sleeps(
@@ -41,7 +41,7 @@ def get_sleeps(
 
 
 @router.post(
-    '/',
+    '',
     response_model=models.Sleep,
     status_code=status.HTTP_201_CREATED,
 )

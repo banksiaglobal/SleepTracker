@@ -8,12 +8,12 @@ services:
       - "9000:9000"
     #write your environments below
     environment:
-      - DATABASE_URL=
-      - JWT_SECRET=
-      - IRIS_USERNAME=
-      - IRIS_PASSWORD=
-      - DATABASE_PORT=
-      - IRIS_NAMESPACE=
+      - DATABASE_URL=k8s-40b17863-af56bd00-60d9960a90-25f20b8a1a8e2ff3.elb.us-east-1.amazonaws.com
+      - JWT_SECRET=k8UPGvLZLtAIx200kGo2T0oDYNVduIujO1ogxJCyofk
+      - IRIS_USERNAME=SQLAdmin
+      - IRIS_PASSWORD=!QcvCRrAo5neBe4A69XJE7OUY2vsbp900
+      - DATABASE_PORT=1972
+      - IRIS_NAMESPACE=USER
   frontend:
     build:
       context: ./web-app

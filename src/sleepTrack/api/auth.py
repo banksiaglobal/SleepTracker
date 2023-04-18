@@ -17,7 +17,7 @@ router = APIRouter(
 
 
 @router.post(
-    '/sign-up/',
+    '/sign-up',
     response_model=models.Token,
     status_code=status.HTTP_201_CREATED,
 )
@@ -29,7 +29,7 @@ def sign_up(
 
 
 @router.post(
-    '/sign-in/',
+    '/sign-in',
     response_model=models.Token,
 )
 def sign_in(
@@ -43,7 +43,7 @@ def sign_in(
 
 
 @router.get(
-    '/user/',
+    '/user',
     response_model=models.User,
 )
 def get_user(user: models.User = Depends(get_current_user)):
