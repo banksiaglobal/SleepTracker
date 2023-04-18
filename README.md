@@ -1,5 +1,6 @@
 # Sheep’s Galaxy
-# Attention! This project in progres
+
+# Attention! This project is still work in progres
 
 ## About
 
@@ -19,8 +20,10 @@ git clone https://github.com/banksiaglobal/SleepTracker
 ```bash
 docker compose up -d --build
 ```
+
 The application backend is available at http://localhost:9000/ <br />
 The application frontend is available at http://localhost:8080/
+
 </p>
 
 ### InterSystems IRIS Cloud SQL
@@ -30,7 +33,6 @@ The application frontend is available at http://localhost:8080/
 ### Filling with data
 
 <p>The "sleeps" table of our database is populated with the generated data. To do this, send a request to the server:
-
 
 1. create tables
 
@@ -51,25 +53,27 @@ http://localhost:9000/utils/generate
 
 </p>
 
-###  IntegratedML
+### IntegratedML
 
 <p>The following sql queries are required to implement machine learning algorithms:
 
 ```sql
 Create model sleep predicting (quality) from SQLUser.Sleeps
-``` 
+```
+
 ```sql
 Train model sleeps
-``` 
+```
 
 Here we create a machine learning model based on the Sleeps database table. For prediction, we specify the field "quality" ("quality of sleep", the user's sensation after sleep). <br />
 As a result of training, we get prediction and probability_quality fields, which we use later, for example, in such a sql query:
 
 ```sql
-SELECT PREDICT(sleeps use sleeps) as prediction, quality, 
-PROBABILITY(sleeps use sleeps for '3') as probability_quality, * FROM SQLUser.Sleeps 
+SELECT PREDICT(sleeps use sleeps) as prediction, quality,
+PROBABILITY(sleeps use sleeps for '3') as probability_quality, * FROM SQLUser.Sleeps
 where user_id = 1 and id = 1
 ```
+
 where the prediction field contains a prediction of the quality of sleep, the probability_quality field contains the probability that the dream will be "qualitative" based on its entered characteristics.
 
 ## Application demonstration
@@ -77,9 +81,11 @@ where the prediction field contains a prediction of the quality of sleep, the pr
 ![angular-web](https://user-images.githubusercontent.com/110831804/232340176-382daa9d-28bd-431b-898c-d8b6a396c32f.gif)
 
 Thanks!
+
 </p>
 
 ## Developers of project:
+
 - Backend: [Maria Gladkova](https://community.intersystems.com/user/maria-gladkova)
 - Frontend: [Katsiaryna Shaustruk](https://community.intersystems.com/user/katsiaryna-shaustruk)
 - Backend: [Maria Nesterenko](https://community.intersystems.com/user/maria-nesterenko)
