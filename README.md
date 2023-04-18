@@ -1,7 +1,5 @@
 # Sheep’s Galaxy
 
-# Attention! This project is still work in progres
-
 ## About
 
 <p>This project demonstrates an application for sleep quality monitoring and analysis. <br />
