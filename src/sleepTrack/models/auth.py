@@ -22,6 +22,7 @@ class UserCreate(BaseUser):
 class User(BaseUser):
     id: int
 
+
     class Config:
         orm_mode = True
 

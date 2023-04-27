@@ -1,7 +1,6 @@
 from pydantic import BaseModel, Field, validator
 from fastapi import Query
 from enum import Enum
-from datetime import datetime
 
 
 class PredictionKind(BaseModel):

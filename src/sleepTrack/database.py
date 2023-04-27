@@ -1,11 +1,27 @@
 from .settings import settings
-import intersystems_iris.dbapi._DBAPI as iris
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
+engine = create_engine(
+    f"iris://{settings.iris_username}:{settings.iris_password}@{settings.database_url}:"
+    f"{settings.database_port}/{settings.iris_namespace}"
+)
 
-def get_connection():
-    connection = iris.connect(settings.database_url, settings.database_port, settings.iris_namespace,
-                              settings.iris_username, settings.iris_password)
+Session = sessionmaker(
+    engine,
+    autocommit=False,
+    autoflush=False,
+)
+
+def get_session():
+    session = Session()
     try:
-        yield connection
+        yield session
     finally:
-        connection.close()
+        session.close()
+
+
+
+
+
+

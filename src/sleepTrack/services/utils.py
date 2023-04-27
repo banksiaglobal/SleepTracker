@@ -5,7 +5,6 @@ from random import randint
 import random
 from datetime import timedelta
 from datetime import datetime
-import intersystems_iris.dbapi._DBAPI as iris
 from fastapi import (
     Depends,
     HTTPException,
@@ -14,9 +13,11 @@ from fastapi import (
 
 from ..models.auth import BaseUser, Gender, TableUser
 from ..models.sleep import BaseSleep, ActivityKind
+from ..tables import Sleep, SysUser
 
-from ..database import get_connection
+from ..database import get_session, engine
 from ..settings import settings
+from ..tables import Base
 
 
 class Generator:
@@ -112,10 +113,8 @@ class Generator:
 
 
 class UtilsService:
-    def __init__(self, connection=Depends(get_connection)):
-        self.connection = iris.connect(
-            settings.database_url, settings.database_port, settings.iris_namespace, settings.iris_username,
-            settings.iris_password)
+    def __init__(self, session=Depends(get_session)):
+        self.session = session
         self.generator = Generator()
 
     @staticmethod
@@ -130,32 +129,7 @@ class UtilsService:
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail='Incorrect database url or password'
             )
-        cur = self.connection.cursor()
-        cur.execute('DROP TABLE IF EXISTS Sleeps')
-        cur.execute('DROP TABLE IF EXISTS Sleeps')
-        cur.execute('DROP TABLE IF EXISTS SysUsers')
-        cur.execute('CREATE TABLE SysUsers (id serial PRIMARY KEY,'
-                    'email varchar (150) NOT NULL UNIQUE,'
-                    'username varchar (50) NOT NULL UNIQUE,'
-                    'password varchar (150) NOT NULL,'
-                    'gender varchar (10) NOT NULL, '
-                    'DOB datetime NOT NULL)')
-
-        cur.execute('CREATE TABLE Sleeps (id serial PRIMARY KEY,'
-                    'activity varchar (10) ,'
-                    'stress int NOT NULL,'
-                    'coffee int NOT NULL,'
-                    'emotion int NOT NULL,'
-                    'lights int NOT NULL,'
-                    'comfort int NOT NULL,'
-                    'quality int NOT NULL,'
-                    'user_id int NOT NULL,'
-                    'start_time datetime NOT NULL,'
-                    'end_time datetime NOT NULL,'
-                    'FOREIGN KEY (user_id) REFERENCES SysUsers(id) ON DELETE CASCADE)')
-
-        self.connection.commit()
-        cur.close()
+        Base.metadata.create_all(engine)
         return {"message": "Tables was created successfully!"}
 
     def generate(self, data):
@@ -165,22 +139,22 @@ class UtilsService:
                 detail='Incorrect database url or password'
             )
 
-        cur = self.connection.cursor()
         result = []
         for i in range(1):
             user_data = self.generator.generate_user()
             password = "test"
-            password_hash = bcrypt.hash(password)
 
-            cur.execute(f"INSERT INTO SysUsers (email, username, password, gender, DOB)"
-                        f"VALUES ('{user_data.email}', '{user_data.username}', '{password_hash}', '{user_data.gender.value}', '{user_data.DOB}')")
+            user = SysUser(
+                email=user_data.email,
+                username=user_data.username,
+                password=bcrypt.hash(password),
+                gender=user_data.gender.value,
+                DOB=datetime.strptime(user_data.DOB, '%Y-%m-%d %H:%M:%S')
 
-            self.connection.commit()
-
-            cur.execute(f"SELECT * FROM SysUsers where email = '{user_data.email}'")
-            users = cur.fetchall()
-
-            user = list(self.generator._user_from_db_to_dict(users))[0]
+            )
+            self.session.add(user)
+            self.session.commit()
+            # user.DOB = user.DOB.strftime("%Y-%m-%d %H:%M:%S")
 
             sleeps = []
             for j in range(3):
@@ -200,13 +174,20 @@ class UtilsService:
                     quality=random.randint(1, 3),
                 )
                 sleep_data.quality = self.generator.determine_sleep_quality(sleep_data)
-                cur.execute(
-                    f"INSERT INTO Sleeps (activity, stress, coffee, emotion, "
-                    f"lights, comfort, quality, user_id, start_time, end_time)"
-                    f"VALUES ('{sleep_data.activity.value}', '{sleep_data.stress}', '{sleep_data.coffee}',"
-                    f" '{sleep_data.emotion}', '{sleep_data.lights}', '{sleep_data.comfort}', "
-                    f"'{sleep_data.quality}', '{user.id}', '{sleep_data.start_time}', '{sleep_data.end_time}')")
-                self.connection.commit()
+                sleep = Sleep(
+                    activity=sleep_data.activity.value,
+                    stress=sleep_data.stress,
+                    coffee=sleep_data.coffee,
+                    emotion=sleep_data.emotion,
+                    lights=sleep_data.lights,
+                    comfort=sleep_data.comfort,
+                    quality=sleep_data.quality,
+                    start_time=datetime.strptime(sleep_data.start_time, '%Y-%m-%d %H:%M:%S'),
+                    end_time=datetime.strptime(sleep_data.end_time, '%Y-%m-%d %H:%M:%S'),
+                    user_id=user.id,
+                )
+                self.session.add(sleep)
+                self.session.commit()
                 sleeps.append(sleep_data)
 
             user_dict = {
@@ -219,7 +200,4 @@ class UtilsService:
             }
 
             result.append(user_dict)
-
-        cur.close()
-        self.connection.close()
         return result

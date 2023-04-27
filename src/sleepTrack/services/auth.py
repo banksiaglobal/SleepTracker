@@ -18,9 +18,10 @@ from pydantic import ValidationError
 
 from .. import (
     models,
+    tables
 )
 
-from ..database import get_connection
+from ..database import get_session
 from ..settings import settings
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/auth/sign-in/')
@@ -65,7 +66,7 @@ class AuthService:
         return user
 
     @classmethod
-    def create_token(cls, user: models.TableUser) -> models.Token:
+    def create_token(cls, user: tables.SysUser) -> models.Token:
         user_data = models.User.from_orm(user)
         now = datetime.utcnow()
         payload = {
@@ -82,25 +83,24 @@ class AuthService:
         )
         return models.Token(access_token=token)
 
-    def __init__(self, connection=Depends(get_connection)):
-        self.connection = connection
+    def __init__(self, session=Depends(get_session)):
+        self.session = session
 
     def register_new_user(
             self,
             user_data: models.UserCreate
     ) -> models.Token:
-        cur = self.connection.cursor()
-        cur.execute('INSERT INTO SysUsers (email, username, password, gender, DOB)'
-                    'VALUES (?, ?, ?, ?, ?)',
-                    (
-                        user_data.email, user_data.username, self.hash_password(user_data.password),
-                        user_data.gender.value, user_data.DOB)
-                    )
-        self.connection.commit()
-        cur.execute(f"SELECT * FROM SysUsers where email = '{user_data.email}'")
-        users = cur.fetchall()
-        cur.close()
-        user = list(self._user_from_db_to_dict(users))[0]
+        user = tables.SysUser(
+            email=user_data.email,
+            username=user_data.username,
+            password=self.hash_password(user_data.password),
+            gender=user_data.gender.value,
+            DOB=datetime.strptime(user_data.DOB, '%Y-%m-%d %H:%M:%S')
+
+        )
+        self.session.add(user)
+        self.session.commit()
+        user.DOB = user.DOB.strftime("%Y-%m-%d %H:%M:%S")
         return self.create_token(user)
 
     def authenticate_user(
@@ -113,30 +113,18 @@ class AuthService:
             detail='Incorrect username or password',
             headers={'WWW-Authenticate': 'Bearer'},
         )
-        try:
-            cur = self.connection.cursor()
-            cur.execute(f"SELECT * FROM SysUsers where username = '{username}'")
-            users = cur.fetchall()
-            cur.close()
-            user = list(self._user_from_db_to_dict(users))[0]
-            if not user:
-                raise Exception()
+        user = (
+            self.session
+            .query(tables.SysUser)
+            .filter(tables.SysUser.username == username)
+            .first()
+        )
 
-            if not self.verify_password(password, user.password):
-                raise Exception()
-        except:
+        if not user:
             raise exception
 
+        if not self.verify_password(password, user.password):
+            raise exception
+        user.DOB = user.DOB.strftime("%Y-%m-%d %H:%M:%S")
         return self.create_token(user)
 
-    @staticmethod
-    def _user_from_db_to_dict(users: list, i: int = 0) -> models.TableUser:
-        while i < len(users):
-            yield models.TableUser.parse_obj({
-                'id': users[i][0],
-                'email': users[i][1],
-                'username': users[i][2],
-                'password': users[i][3],
-                'gender': users[i][4],
-                'DOB': users[i][5]})
-            i += 1

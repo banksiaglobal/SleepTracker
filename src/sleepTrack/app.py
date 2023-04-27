@@ -4,7 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title='Sheep’s Galaxy',
-    version='1.0.0'
+    version='1.1.0'
 )
 
 app.add_middleware(
