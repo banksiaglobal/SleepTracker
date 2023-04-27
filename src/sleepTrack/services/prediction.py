@@ -1,10 +1,10 @@
 from fastapi import Depends
-from ..database import get_connection
+from ..database import get_session
 from .. import models
 
 
 class PredictionsService:
-    def __init__(self, connection=Depends(get_connection)):
+    def __init__(self, connection=Depends(get_session)):
         self.connection = connection
 
     @staticmethod

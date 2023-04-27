@@ -6,7 +6,7 @@ from fastapi import (
     status,
 )
 
-from .. import models
+from .. import models, tables
 from ..services.auth import get_current_user
 from ..services.sleep import SleepsService
 from ..services.prediction import PredictionsService
